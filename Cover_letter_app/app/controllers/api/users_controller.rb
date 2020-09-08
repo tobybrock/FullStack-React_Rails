@@ -1,12 +1,12 @@
 class Api::UsersController < ApplicationController
+  before_action :user_exists, except: :create
 
   def index
     render json: User.all
   end
 
   def show
-    user = User.find(user_params)
-    render json: { id: user.id, name: user.name, email: user.email }
+    render json: User.find(user_params)
   end
 
   def create
@@ -19,17 +19,20 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    render json: User.find(user_params).update(user_params)
+    user = User.find(params[:id])
+    render json: user.update(user_params) # doesn't reset password
   end
 
   def destroy
-    render json: User.destroy(user_params)
+    email = User.find_by_id(params[:id])
+    User.destroy(params[:id])
+    render json: { message: "#{email[:email]} has been deleted" }
   end
 
   private
 
   def user_params
-    params.required(:user).permit(:name, :password_digest, :email)
+    params.required(:user).permit(:name, :password, :email)
   end
 
 end

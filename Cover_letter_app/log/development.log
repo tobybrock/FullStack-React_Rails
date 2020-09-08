@@ -850,3 +850,1422 @@ Processing by Api::UsersController#create as */*
 Completed 201 Created in 11ms (Views: 0.2ms | ActiveRecord: 1.7ms | Allocations: 4543)
 
 
+Started GET "/api/users" for ::1 at 2020-09-08 20:39:24 +1000
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#index as */*
+  Parameters: {"name"=>"Tobys", "password_digest"=>"[FILTERED]", "email"=>"tobyqqq@gmail.com", "user"=>{"name"=>"Tobys", "password_digest"=>"[FILTERED]", "email"=>"tobyqqq@gmail.com"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/users_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 3.8ms | ActiveRecord: 5.4ms | Allocations: 3820)
+
+
+Started POST "/api/users" for ::1 at 2020-09-08 20:39:37 +1000
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"Tobys", "password_digest"=>"[FILTERED]", "email"=>"tobyqqq@gmail.com", "user"=>{"name"=>"Tobys", "password_digest"=>"[FILTERED]", "email"=>"tobyqqq@gmail.com"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "tobyqqq@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 0.6ms | Allocations: 8875)
+
+
+  
+NoMethodError (undefined method `password' for #<User:0x0000000008011258>
+Did you mean?  password_digest):
+  
+app/controllers/api/users_controller.rb:12:in `create'
+Started DELETE "/api/users/1" for ::1 at 2020-09-08 20:40:52 +1000
+Processing by Api::UsersController#destroy as */*
+  Parameters: {"id"=>"1"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms | Allocations: 115)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/api/users_controller.rb:31:in `user_params'
+app/controllers/api/users_controller.rb:25:in `destroy'
+Started GET "/api/users" for ::1 at 2020-09-08 20:43:52 +1000
+Processing by Api::UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/users_controller.rb:4:in `index'
+Completed 200 OK in 12ms (Views: 4.9ms | ActiveRecord: 3.7ms | Allocations: 4810)
+
+
+Started GET "/api/users" for ::1 at 2020-09-08 20:45:26 +1000
+Processing by Api::UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/users_controller.rb:4:in `index'
+Completed 200 OK in 9ms (Views: 3.6ms | ActiveRecord: 2.7ms | Allocations: 4797)
+
+
+Started DELETE "/api/users/1" for ::1 at 2020-09-08 20:45:30 +1000
+Processing by Api::UsersController#destroy as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 1]]
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+Completed 400 Bad Request in 9ms (Views: 0.2ms | ActiveRecord: 2.0ms | Allocations: 2895)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/api/users_controller.rb:32:in `user_params'
+app/controllers/api/users_controller.rb:26:in `destroy'
+Started PATCH "/api/users/1" for ::1 at 2020-09-08 20:46:50 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wack", "password_digest"=>"[FILTERED]", "email"=>"youneed to make this constant@gmail.com", "id"=>"1", "user"=>{"name"=>"Wack", "password_digest"=>"[FILTERED]", "email"=>"youneed to make this constant@gmail.com"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.3ms | Allocations: 726)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'={"name"=>"Wack", "password_digest"=>"password", "email"=>"youneed to make this constant@gmail.com"}):
+  
+app/controllers/api/users_controller.rb:21:in `update'
+Started PATCH "/api/users/1" for ::1 at 2020-09-08 20:48:16 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wack", "password_digest"=>"[FILTERED]", "email"=>"youneed to make this constant@gmail.com", "id"=>"1", "user"=>{"name"=>"Wack", "password_digest"=>"[FILTERED]", "email"=>"youneed to make this constant@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+Completed 404 Not Found in 3ms (ActiveRecord: 2.9ms | Allocations: 846)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=1):
+  
+app/controllers/api/users_controller.rb:21:in `update'
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 20:48:30 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wack", "password_digest"=>"[FILTERED]", "email"=>"youneed to make this constant@gmail.com", "id"=>"2", "user"=>{"name"=>"Wack", "password_digest"=>"[FILTERED]", "email"=>"youneed to make this constant@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "youneed to make this constant@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.7ms | Allocations: 8237)
+
+
+  
+NoMethodError (undefined method `password' for #<User:0x000000000a40dd28>
+Did you mean?  password_digest):
+  
+app/controllers/api/users_controller.rb:21:in `update'
+Started PATCH "/api/users/1" for ::1 at 2020-09-08 20:50:32 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wack", "password_digest"=>"[FILTERED]", "email"=>"youneed to make this constant@gmail.com", "id"=>"1", "user"=>{"name"=>"Wack", "password_digest"=>"[FILTERED]", "email"=>"youneed to make this constant@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+Completed 404 Not Found in 2ms (ActiveRecord: 0.2ms | Allocations: 675)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=1):
+  
+app/controllers/api/users_controller.rb:21:in `update'
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 20:50:36 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wack", "password_digest"=>"[FILTERED]", "email"=>"youneed to make this constant@gmail.com", "id"=>"2", "user"=>{"name"=>"Wack", "password_digest"=>"[FILTERED]", "email"=>"youneed to make this constant@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "youneed to make this constant@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 1.0ms | Allocations: 5809)
+
+
+  
+NoMethodError (undefined method `password' for #<User:0x000000000a7acd08>
+Did you mean?  password_digest):
+  
+app/controllers/api/users_controller.rb:21:in `update'
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 20:50:43 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wack", "password_digest"=>"[FILTERED]", "email"=>"youneed to make this constant@gmail.com", "id"=>"2", "user"=>{"name"=>"Wack", "password_digest"=>"[FILTERED]", "email"=>"youneed to make this constant@gmail.com"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "youneed to make this constant@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.6ms | Allocations: 5813)
+
+
+  
+NoMethodError (undefined method `password' for #<User:0x000000000a453990>
+Did you mean?  password_digest):
+  
+app/controllers/api/users_controller.rb:21:in `update'
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 20:52:46 +1000
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wack", "password_digest"=>"[FILTERED]", "email"=>"youneed@gmail.com", "id"=>"2", "user"=>{"name"=>"Wack", "password_digest"=>"[FILTERED]", "email"=>"youneed@gmail.com"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "youneed@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 6.0ms | Allocations: 9529)
+
+
+  
+NoMethodError (undefined method `password' for #<User:0x000000000ad5d568>
+Did you mean?  password_digest):
+  
+app/controllers/api/users_controller.rb:24:in `update'
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 20:54:43 +1000
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wack", "password"=>"[FILTERED]", "email"=>"youneed@gmail.com", "id"=>"2", "user"=>{"name"=>"Wack", "email"=>"youneed@gmail.com"}}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "youneed@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 6.6ms | Allocations: 9508)
+
+
+  
+NoMethodError (undefined method `password' for #<User:0x000000000adf6420>
+Did you mean?  password_digest):
+  
+app/controllers/api/users_controller.rb:24:in `update'
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:02:04 +1000
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wack", "password"=>"[FILTERED]", "email"=>"youneed@gmail.com", "id"=>"2", "user"=>{"name"=>"Wack", "email"=>"youneed@gmail.com"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "youneed@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+Completed 200 OK in 35ms (Views: 0.1ms | ActiveRecord: 5.9ms | Allocations: 10957)
+
+
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:03:54 +1000
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wack", "password"=>"[FILTERED]", "email"=>"youneed@gmail.com", "id"=>"2", "user"=>{"name"=>"Wack", "email"=>"youneed@gmail.com"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "youneed@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+Completed 200 OK in 29ms (Views: 0.1ms | ActiveRecord: 5.5ms | Allocations: 10604)
+
+
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:04:53 +1000
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wack", "password"=>"[FILTERED]", "email"=>"youneed@gmail.com", "id"=>"2", "user"=>{"name"=>"Wack", "email"=>"youneed@gmail.com"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "youneed@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+Completed 200 OK in 32ms (Views: 0.1ms | ActiveRecord: 6.7ms | Allocations: 10957)
+
+
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:08:53 +1000
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wack", "password"=>"[FILTERED]", "email"=>"youneed@gmail.com", "id"=>"2", "user"=>{"name"=>"Wack", "email"=>"youneed@gmail.com"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "youneed@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+Completed 200 OK in 30ms (Views: 0.1ms | ActiveRecord: 5.6ms | Allocations: 10660)
+
+
+Started PATCH "/api/users/2" for 127.0.0.1 at 2020-09-08 21:10:19 +1000
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wack", "password"=>"[FILTERED]", "email"=>"youneed@gmail.com", "id"=>"2", "user"=>{"name"=>"Wack", "email"=>"youneed@gmail.com"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "youneed@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+Completed 200 OK in 31ms (Views: 0.1ms | ActiveRecord: 5.8ms | Allocations: 10693)
+
+
+Started PATCH "/api/users/2" for 127.0.0.1 at 2020-09-08 21:10:31 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wack", "password_digest"=>"[FILTERED]", "email"=>"youneed@gmail.com", "id"=>"2", "user"=>{"name"=>"Wack", "password_digest"=>"[FILTERED]", "email"=>"youneed@gmail.com"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "youneed@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "name" = $1, "password_digest" = $2, "email" = $3 WHERE "users"."id" = $4[0m  [["name", "Wack"], ["password_digest", "password"], ["email", "youneed@gmail.com"], ["id", 2]]
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+Completed 200 OK in 15ms (Views: 0.1ms | ActiveRecord: 2.2ms | Allocations: 4583)
+
+
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:11:42 +1000
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wack", "password"=>"[FILTERED]", "email"=>"youneed@gmail.com", "id"=>"2", "user"=>{"name"=>"Wack", "email"=>"youneed@gmail.com"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "youneed@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+Completed 200 OK in 29ms (Views: 0.1ms | ActiveRecord: 5.7ms | Allocations: 10343)
+
+
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:13:07 +1000
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wacsk", "password"=>"[FILTERED]", "email"=>"youneeeeeesd@gmail.com", "id"=>"2", "user"=>{"name"=>"Wacsk", "email"=>"youneeeeeesd@gmail.com"}}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+Completed 500 Internal Server Error in 65ms (ActiveRecord: 5.4ms | Allocations: 47562)
+
+
+  
+NameError (undefined local variable or method `name' for #<Api::UsersController:0x000000000ab154e0>):
+  
+app/controllers/api/users_controller.rb:22:in `update'
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:14:00 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wacsk", "password"=>"[FILTERED]", "email"=>"youneeeeeesd@gmail.com", "id"=>"2", "user"=>{"name"=>"Wacsk", "email"=>"youneeeeeesd@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 3.2ms | Allocations: 3735)
+
+
+  
+NoMethodError (undefined method `name' for #<ActionController::Parameters:0x000000000a3972e0>):
+  
+app/controllers/api/users_controller.rb:22:in `update'
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:14:15 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wacsk", "password"=>"[FILTERED]", "email"=>"youneeeeeesd@gmail.com", "id"=>"2", "user"=>{"name"=>"Wacsk", "email"=>"youneeeeeesd@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 3.0ms | Allocations: 3210)
+
+
+  
+ArgumentError (When assigning attributes, you must pass a hash as an argument, Symbol passed.):
+  
+app/controllers/api/users_controller.rb:22:in `update'
+Started POST "/api/users" for ::1 at 2020-09-08 21:16:50 +1000
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"Tobysemporium", "password_digest"=>"[FILTERED]", "email"=>"tobyqqqqqq@gmail.com", "user"=>{"name"=>"Tobysemporium", "password_digest"=>"[FILTERED]", "email"=>"tobyqqqqqq@gmail.com"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "tobyqqqqqq@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "email") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Tobysemporium"], ["password_digest", "password"], ["email", "tobyqqqqqq@gmail.com"]]
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "tobyqqqqqq@gmail.com"], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+Completed 201 Created in 13ms (Views: 0.3ms | ActiveRecord: 5.3ms | Allocations: 7520)
+
+
+Started POST "/api/users" for ::1 at 2020-09-08 21:17:37 +1000
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"Tobysssemporium", "password_digest"=>"[FILTERED]", "email"=>"tobyqqqqqq@gmail.com", "user"=>{"name"=>"Tobysssemporium", "password_digest"=>"[FILTERED]", "email"=>"tobyqqqqqq@gmail.com"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "tobyqqqqqq@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "tobyqqqqqq@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+Completed 422 Unprocessable Entity in 23ms (Views: 0.1ms | ActiveRecord: 4.0ms | Allocations: 9508)
+
+
+Started POST "/api/users" for ::1 at 2020-09-08 21:17:42 +1000
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"Tobysssemporium", "password_digest"=>"[FILTERED]", "email"=>"tobyqqqqqqqq@gmail.com", "user"=>{"name"=>"Tobysssemporium", "password_digest"=>"[FILTERED]", "email"=>"tobyqqqqqqqq@gmail.com"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "tobyqqqqqqqq@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "email") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Tobysssemporium"], ["password_digest", "password"], ["email", "tobyqqqqqqqq@gmail.com"]]
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "tobyqqqqqqqq@gmail.com"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+Completed 201 Created in 7ms (Views: 0.1ms | ActiveRecord: 1.1ms | Allocations: 4695)
+
+
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:20:31 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wacsk", "password"=>"[FILTERED]", "email"=>"youneeeeeesd@gmail.com", "id"=>"2", "user"=>{"name"=>"Wacsk", "email"=>"youneeeeeesd@gmail.com"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 3.0ms | Allocations: 3234)
+
+
+  
+ArgumentError (When assigning attributes, you must pass a hash as an argument, NilClass passed.):
+  
+app/controllers/api/users_controller.rb:22:in `update'
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:22:01 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wacsk", "password"=>"[FILTERED]", "email"=>"youneeeeeesd@gmail.com", "id"=>"2", "user"=>{"name"=>"Wacsk", "email"=>"youneeeeeesd@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 3.0ms | Allocations: 3199)
+
+
+  
+ArgumentError (When assigning attributes, you must pass a hash as an argument, NilClass passed.):
+  
+app/controllers/api/users_controller.rb:22:in `update'
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:22:17 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wacsk", "password"=>"[FILTERED]", "email"=>"youneeeeeesd@gmail.com", "id"=>"2", "user"=>{"name"=>"Wacsk", "email"=>"youneeeeeesd@gmail.com"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 3.2ms | Allocations: 3149)
+
+
+  
+TypeError (no implicit conversion of Symbol into Integer):
+  
+app/controllers/api/users_controller.rb:22:in `[]'
+app/controllers/api/users_controller.rb:22:in `update'
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:22:41 +1000
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wacsk", "password"=>"[FILTERED]", "email"=>"youneeeeeesd@gmail.com", "id"=>"2", "user"=>{"name"=>"Wacsk", "email"=>"youneeeeeesd@gmail.com"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 5.9ms | Allocations: 3982)
+
+
+  
+ArgumentError (When assigning attributes, you must pass a hash as an argument, NilClass passed.):
+  
+app/controllers/api/users_controller.rb:22:in `update'
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:24:39 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wacsk", "password"=>"[FILTERED]", "email"=>"youneeeeeesd@gmail.com", "id"=>"2", "user"=>{"name"=>"Wacsk", "email"=>"youneeeeeesd@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:22:in `update'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "youneed@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:22:in `update'
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:22:in `update'
+Completed 200 OK in 20ms (Views: 0.1ms | ActiveRecord: 3.7ms | Allocations: 9724)
+
+
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:29:50 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"Wacsk", "password"=>"[FILTERED]", "email"=>"youneeeeeesd@gmail.com", "id"=>"2", "user"=>{"name"=>"Wacsk", "email"=>"youneeeeeesd@gmail.com"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "youneeeeeesd@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "name" = $1, "email" = $2 WHERE "users"."id" = $3[0m  [["name", "Wacsk"], ["email", "youneeeeeesd@gmail.com"], ["id", 2]]
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+Completed 200 OK in 10ms (Views: 0.1ms | ActiveRecord: 2.3ms | Allocations: 7104)
+
+
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:31:35 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"int", "password"=>"[FILTERED]", "email"=>"new@gmail.com", "id"=>"2", "user"=>{"name"=>"int", "email"=>"new@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "youneeeeeesd@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[36mUser Update (0.3ms)[0m  [1m[33mUPDATE "users" SET "name" = $1 WHERE "users"."id" = $2[0m  [["name", "int"], ["id", 2]]
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+Completed 200 OK in 17ms (Views: 0.1ms | ActiveRecord: 11.4ms | Allocations: 6983)
+
+
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:32:37 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"int", "password"=>"[FILTERED]", "email"=>"new@gmail.com", "id"=>"2", "user"=>{"name"=>"int", "email"=>"new@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "youneeeeeesd@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+Completed 200 OK in 5ms (Views: 0.1ms | ActiveRecord: 0.6ms | Allocations: 3559)
+
+
+Started POST "/api/users" for ::1 at 2020-09-08 21:33:05 +1000
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"user", "password_digest"=>"[FILTERED]", "email"=>"user@gmail.com", "user"=>{"name"=>"user", "password_digest"=>"[FILTERED]", "email"=>"user@gmail.com"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "user@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "email") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "user"], ["password_digest", "newuser"], ["email", "user@gmail.com"]]
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "user@gmail.com"], ["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+Completed 201 Created in 8ms (Views: 0.2ms | ActiveRecord: 1.4ms | Allocations: 4705)
+
+
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:35:09 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"int", "password"=>"[FILTERED]", "email"=>"new@gmail.com", "id"=>"2", "user"=>{"name"=>"int", "email"=>"new@gmail.com"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "youneeeeeesd@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+  [1m[35m (0.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:24:in `update'
+Completed 200 OK in 12ms (Views: 0.1ms | ActiveRecord: 3.8ms | Allocations: 6194)
+
+
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:35:44 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"int", "password"=>"[FILTERED]", "email"=>"new@gmail.com", "id"=>"2", "user"=>{"name"=>"int", "email"=>"new@gmail.com"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:25:in `update'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "youneeeeeesd@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:25:in `update'
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:25:in `update'
+Completed 200 OK in 17ms (Views: 0.1ms | ActiveRecord: 4.4ms | Allocations: 6186)
+
+
+Started PATCH "/api/users/2" for ::1 at 2020-09-08 21:38:20 +1000
+Processing by Api::UsersController#update as */*
+  Parameters: {"name"=>"int", "password"=>"[FILTERED]", "email"=>"new@gmail.com", "id"=>"2", "user"=>{"name"=>"int", "email"=>"new@gmail.com"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:21:in `update'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:22:in `update'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "new@gmail.com"], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:22:in `update'
+  [1m[36mUser Update (0.2ms)[0m  [1m[33mUPDATE "users" SET "email" = $1 WHERE "users"."id" = $2[0m  [["email", "new@gmail.com"], ["id", 2]]
+  ↳ app/controllers/api/users_controller.rb:22:in `update'
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:22:in `update'
+Completed 200 OK in 10ms (Views: 0.1ms | ActiveRecord: 3.4ms | Allocations: 6967)
+
+
+Started DELETE "/api/users/2" for ::1 at 2020-09-08 21:44:34 +1000
+Processing by Api::UsersController#destroy as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:26:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:26:in `destroy'
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/api/users_controller.rb:26:in `destroy'
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:26:in `destroy'
+Completed 400 Bad Request in 17ms (Views: 0.2ms | ActiveRecord: 2.8ms | Allocations: 6453)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/api/users_controller.rb:33:in `user_params'
+app/controllers/api/users_controller.rb:27:in `destroy'
+Started DELETE "/api/users/2" for ::1 at 2020-09-08 21:46:03 +1000
+Processing by Api::UsersController#destroy as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:26:in `destroy'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+Completed 404 Not Found in 27ms (ActiveRecord: 14.0ms | Allocations: 2926)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=2):
+  
+app/controllers/api/users_controller.rb:27:in `destroy'
+Started DELETE "/api/users/3" for ::1 at 2020-09-08 21:46:19 +1000
+Processing by Api::UsersController#destroy as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:26:in `destroy'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 3]]
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+Completed 500 Internal Server Error in 8ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 5514)
+
+
+  
+AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...) and return".):
+  
+app/controllers/api/users_controller.rb:28:in `destroy'
+Started DELETE "/api/users/4" for ::1 at 2020-09-08 21:46:52 +1000
+Processing by Api::UsersController#destroy as */*
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:26:in `destroy'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+Completed 200 OK in 13ms (Views: 0.2ms | ActiveRecord: 3.1ms | Allocations: 7159)
+
+
+Started DELETE "/api/users/5" for ::1 at 2020-09-08 21:47:32 +1000
+Processing by Api::UsersController#destroy as */*
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:26:in `destroy'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 5]]
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+Completed 200 OK in 15ms (Views: 0.2ms | ActiveRecord: 3.5ms | Allocations: 7175)
+
+
+Started DELETE "/api/users/6" for ::1 at 2020-09-08 21:47:53 +1000
+Processing by Api::UsersController#destroy as */*
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:26:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:26:in `destroy'
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 6]]
+  ↳ app/controllers/api/users_controller.rb:26:in `destroy'
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:26:in `destroy'
+Completed 200 OK in 12ms (Views: 0.2ms | ActiveRecord: 3.2ms | Allocations: 6487)
+
+
+Started POST "/api/users" for ::1 at 2020-09-08 21:52:28 +1000
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"user", "password_digest"=>"[FILTERED]", "email"=>"user@gmail.com", "user"=>{"name"=>"user", "password_digest"=>"[FILTERED]", "email"=>"user@gmail.com"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "user@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "user@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+Completed 422 Unprocessable Entity in 14ms (Views: 0.1ms | ActiveRecord: 3.4ms | Allocations: 6921)
+
+
+Started POST "/api/users" for ::1 at 2020-09-08 21:52:33 +1000
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"user", "password_digest"=>"[FILTERED]", "email"=>"usere@gmail.com", "user"=>{"name"=>"user", "password_digest"=>"[FILTERED]", "email"=>"usere@gmail.com"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "usere@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "email") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "user"], ["password_digest", "newuser"], ["email", "usere@gmail.com"]]
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:12:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "usere@gmail.com"], ["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+Completed 201 Created in 7ms (Views: 0.2ms | ActiveRecord: 1.2ms | Allocations: 4679)
+
+
+Started DELETE "/api/users/8" for ::1 at 2020-09-08 21:52:45 +1000
+Processing by Api::UsersController#destroy as */*
+  Parameters: {"id"=>"8"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:26:in `destroy'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 8]]
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 1.0ms | Allocations: 3345)
+
+
+Started GET "/api/users" for ::1 at 2020-09-08 22:07:35 +1000
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#index as */*
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 192)
+
+
+Started POST "/api/users" for ::1 at 2020-09-08 22:09:38 +1000
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"user", "password_digest"=>"[FILTERED]", "email"=>"usere@gmail.com", "user"=>{"name"=>"user", "password_digest"=>"[FILTERED]", "email"=>"usere@gmail.com"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Exists? (1.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "usere@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "email") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "user"], ["password_digest", "newuser"], ["email", "usere@gmail.com"]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "usere@gmail.com"], ["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+Completed 201 Created in 19ms (Views: 0.2ms | ActiveRecord: 8.7ms | Allocations: 8180)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-08 22:10:03 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"password_digest"=>"[FILTERED]", "email"=>"usere@gmail.com", "auth"=>{"password_digest"=>"[FILTERED]", "email"=>"usere@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "usere@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 500 Internal Server Error in 48ms (ActiveRecord: 0.4ms | Allocations: 924)
+
+
+  
+BCrypt::Errors::InvalidHash (invalid hash):
+  
+app/controllers/api/auth_controller.rb:7:in `login'
+Started POST "/api/users" for 127.0.0.1 at 2020-09-08 22:45:12 +1000
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"user", "password_digest"=>"[FILTERED]", "email"=>"usere@gmail.com", "user"=>{"name"=>"user", "password_digest"=>"[FILTERED]", "email"=>"usere@gmail.com"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "usere@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "usere@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+Completed 422 Unprocessable Entity in 26ms (Views: 0.1ms | ActiveRecord: 6.0ms | Allocations: 10501)
+
+
+Started POST "/api/users" for 127.0.0.1 at 2020-09-08 22:45:16 +1000
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"user", "password_digest"=>"[FILTERED]", "email"=>"userre@gmail.com", "user"=>{"name"=>"user", "password_digest"=>"[FILTERED]", "email"=>"userre@gmail.com"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "userre@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "email") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "user"], ["password_digest", "newuser"], ["email", "userre@gmail.com"]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[35m (17.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "userre@gmail.com"], ["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+Completed 201 Created in 37ms (Views: 0.2ms | ActiveRecord: 18.8ms | Allocations: 4810)
+
+
+Started POST "/api/auth/login" for 127.0.0.1 at 2020-09-08 22:45:27 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"password_digest"=>"[FILTERED]", "email"=>"usere@gmail.com", "auth"=>{"password_digest"=>"[FILTERED]", "email"=>"usere@gmail.com"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "usere@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.3ms | Allocations: 924)
+
+
+  
+BCrypt::Errors::InvalidHash (invalid hash):
+  
+app/controllers/api/auth_controller.rb:7:in `login'
+Started POST "/api/auth/login" for ::1 at 2020-09-08 22:47:17 +1000
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::AuthController#login as */*
+  Parameters: {"password_digest"=>"[FILTERED]", "email"=>"usere@gmail.com", "auth"=>{"password_digest"=>"[FILTERED]", "email"=>"usere@gmail.com"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "usere@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 5.2ms | Allocations: 5918)
+
+
+  
+BCrypt::Errors::InvalidHash (invalid hash):
+  
+app/controllers/api/auth_controller.rb:7:in `login'
+Started POST "/api/auth/login" for ::1 at 2020-09-08 22:47:56 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"password_digest"=>"[FILTERED]", "email"=>"usere@gmail.com", "auth"=>{"password_digest"=>"[FILTERED]", "email"=>"usere@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "usere@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 2.8ms | Allocations: 4645)
+
+
+  
+BCrypt::Errors::InvalidHash (invalid hash):
+  
+app/controllers/api/auth_controller.rb:7:in `login'
+Started POST "/api/users" for ::1 at 2020-09-08 23:35:01 +1000
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"user", "password_digest"=>"[FILTERED]", "email"=>"userre@gmail.com", "user"=>{"name"=>"user", "password_digest"=>"[FILTERED]", "email"=>"userre@gmail.com"}}
+[31mUnpermitted parameter: :password_digest[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "userre@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "userre@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+Completed 422 Unprocessable Entity in 23ms (Views: 0.2ms | ActiveRecord: 1.8ms | Allocations: 11190)
+
+
+Started DELETE "/api/users/7" for ::1 at 2020-09-08 23:41:41 +1000
+Processing by Api::UsersController#destroy as */*
+  Parameters: {"id"=>"7"}
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 154)
+
+
+Started DELETE "/api/users/7" for ::1 at 2020-09-08 23:41:52 +1000
+Processing by Api::UsersController#destroy as */*
+  Parameters: {"id"=>"7"}
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 10ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 151)
+
+
+Started DELETE "/api/users/7" for ::1 at 2020-09-08 23:41:55 +1000
+Processing by Api::UsersController#destroy as */*
+  Parameters: {"id"=>"7"}
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 151)
+
+
+Started DELETE "/api/users/7" for ::1 at 2020-09-08 23:42:09 +1000
+Processing by Api::UsersController#destroy as */*
+  Parameters: {"id"=>"7"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:28:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:28:in `destroy'
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 7]]
+  ↳ app/controllers/api/users_controller.rb:28:in `destroy'
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:28:in `destroy'
+Completed 200 OK in 36ms (Views: 0.1ms | ActiveRecord: 21.7ms | Allocations: 7276)
+
+
+Started DELETE "/api/users/8" for ::1 at 2020-09-08 23:42:13 +1000
+Processing by Api::UsersController#destroy as */*
+  Parameters: {"id"=>"8"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:28:in `destroy'
+Completed 404 Not Found in 3ms (ActiveRecord: 0.3ms | Allocations: 1138)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=8):
+  
+app/controllers/api/users_controller.rb:28:in `destroy'
+Started DELETE "/api/users/9" for ::1 at 2020-09-08 23:42:16 +1000
+Processing by Api::UsersController#destroy as */*
+  Parameters: {"id"=>"9"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:28:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:28:in `destroy'
+  [1m[36mUser Destroy (0.4ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 9]]
+  ↳ app/controllers/api/users_controller.rb:28:in `destroy'
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:28:in `destroy'
+Completed 200 OK in 8ms (Views: 0.1ms | ActiveRecord: 1.7ms | Allocations: 3072)
+
+
+Started DELETE "/api/users/10" for ::1 at 2020-09-08 23:42:21 +1000
+Processing by Api::UsersController#destroy as */*
+  Parameters: {"id"=>"10"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:27:in `destroy'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:28:in `destroy'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:28:in `destroy'
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 10]]
+  ↳ app/controllers/api/users_controller.rb:28:in `destroy'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:28:in `destroy'
+Completed 200 OK in 18ms (Views: 0.1ms | ActiveRecord: 1.0ms | Allocations: 3063)
+
+
+Started POST "/api/users" for ::1 at 2020-09-08 23:57:31 +1000
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"user", "password_digest"=>"[FILTERED]", "email"=>"user@gmail.com", "user"=>{"name"=>"user", "password_digest"=>"[FILTERED]", "email"=>"user@gmail.com"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "user@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "password_digest", "email") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "user"], ["password_digest", "newuser"], ["email", "user@gmail.com"]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "user@gmail.com"], ["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+Completed 201 Created in 18ms (Views: 0.2ms | ActiveRecord: 7.4ms | Allocations: 8231)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-08 23:58:07 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"password_digest"=>"[FILTERED]", "email"=>"user@gmail.com", "auth"=>{"password_digest"=>"[FILTERED]", "email"=>"user@gmail.com"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "user@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.3ms | Allocations: 923)
+
+
+  
+BCrypt::Errors::InvalidHash (invalid hash):
+  
+app/controllers/api/auth_controller.rb:7:in `login'
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateResumesProject (20200907112835)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (12.0ms)[0m  [1m[35mDROP TABLE "resumes_projects"[0m
+  [1m[36mprimary::SchemaMigration Destroy (0.4ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20200907112835"]]
+  [1m[35m (3.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateResumesExperience (20200907112823)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.6ms)[0m  [1m[35mDROP TABLE "resumes_experiences"[0m
+  [1m[36mprimary::SchemaMigration Destroy (0.3ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20200907112823"]]
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateResumesEducation (20200907112806)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.5ms)[0m  [1m[35mDROP TABLE "resumes_educations"[0m
+  [1m[36mprimary::SchemaMigration Destroy (0.3ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20200907112806"]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateResumes (20200907103054)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.4ms)[0m  [1m[35mDROP TABLE "resumes"[0m
+  [1m[36mprimary::SchemaMigration Destroy (0.3ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20200907103054"]]
+  [1m[35m (3.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200907102909)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.6ms)[0m  [1m[35mDROP TABLE "users"[0m
+  [1m[36mprimary::SchemaMigration Destroy (0.4ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20200907102909"]]
+  [1m[35m (3.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200907102909)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (12.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "email" character varying, "password_digest" character varying)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200907102909"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateResumes (20200907103054)
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE TABLE "resumes" ("id" bigserial primary key, "name" character varying, "phone" integer, "linkedin" character varying, "github" character varying, "skills" character varying, "experience" character varying, "education" character varying, "project" character varying, "references" character varying)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200907103054"]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateResumesEducation (20200907112806)
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.4ms)[0m  [1m[35mCREATE TABLE "resumes_educations" ("id" bigserial primary key, "institution" character varying, "year" date, "qualification" character varying, "desc" character varying)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200907112806"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateResumesExperience (20200907112823)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE TABLE "resumes_experiences" ("id" bigserial primary key, "organisation" character varying, "position" character varying, "duration" character varying, "desc" character varying)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200907112823"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateResumesProject (20200907112835)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.8ms)[0m  [1m[35mCREATE TABLE "resumes_projects" ("id" bigserial primary key, "title" character varying, "link" character varying, "desc" character varying)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200907112835"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.0ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateResumesProject (20200907112835)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.6ms)[0m  [1m[35mDROP TABLE "resumes_projects"[0m
+  [1m[36mprimary::SchemaMigration Destroy (0.3ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20200907112835"]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateResumesExperience (20200907112823)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.2ms)[0m  [1m[35mDROP TABLE "resumes_experiences"[0m
+  [1m[36mprimary::SchemaMigration Destroy (0.3ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20200907112823"]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateResumesEducation (20200907112806)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.4ms)[0m  [1m[35mDROP TABLE "resumes_educations"[0m
+  [1m[36mprimary::SchemaMigration Destroy (0.3ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20200907112806"]]
+  [1m[35m (2.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateResumes (20200907103054)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.9ms)[0m  [1m[35mDROP TABLE "resumes"[0m
+  [1m[36mprimary::SchemaMigration Destroy (0.3ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20200907103054"]]
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200907102909)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (11.2ms)[0m  [1m[35mDROP TABLE "users"[0m
+  [1m[36mprimary::SchemaMigration Destroy (0.4ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20200907102909"]]
+  [1m[35m (4.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200907102909)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (12.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying, "email" character varying, "password_digest" character varying)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200907102909"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateResumes (20200907103054)
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.9ms)[0m  [1m[35mCREATE TABLE "resumes" ("id" bigserial primary key, "name" character varying, "phone" integer, "linkedin" character varying, "github" character varying, "skills" character varying, "experience" character varying, "education" character varying, "project" character varying, "references" character varying)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200907103054"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateResumesEducation (20200907112806)
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.7ms)[0m  [1m[35mCREATE TABLE "resumes_educations" ("id" bigserial primary key, "institution" character varying, "year" date, "qualification" character varying, "desc" character varying)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200907112806"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateResumesExperience (20200907112823)
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (9.4ms)[0m  [1m[35mCREATE TABLE "resumes_experiences" ("id" bigserial primary key, "organisation" character varying, "position" character varying, "duration" character varying, "desc" character varying)[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200907112823"]]
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateResumesProject (20200907112835)
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.0ms)[0m  [1m[35mCREATE TABLE "resumes_projects" ("id" bigserial primary key, "title" character varying, "link" character varying, "desc" character varying)[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200907112835"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/api/users" for ::1 at 2020-09-09 00:24:06 +1000
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"user", "password"=>"[FILTERED]", "email"=>"user@gmail.com", "user"=>{"name"=>"user", "email"=>"user@gmail.com"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "user@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "user@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+Completed 422 Unprocessable Entity in 25ms (Views: 0.1ms | ActiveRecord: 6.7ms | Allocations: 11342)
+
+
+Started POST "/api/users" for ::1 at 2020-09-09 00:24:31 +1000
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"user", "password"=>"[FILTERED]", "email"=>"user@gmail.com", "user"=>{"name"=>"user", "email"=>"user@gmail.com"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "user@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 6.2ms | Allocations: 7627)
+
+
+  
+NoMethodError (undefined method `password' for #<User:0x000000000a857a28>
+Did you mean?  password_digest):
+  
+app/controllers/api/users_controller.rb:13:in `create'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to RemovePasswordDigestFromUsers (20200908143625)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.6ms)[0m  [1m[35mALTER TABLE "users" DROP COLUMN "password_digest"[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200908143625"]]
+  [1m[35m (2.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddPasswordDigestToUsers (20200908151109)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "users" ADD "password_digest" character varying[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200908151109"]]
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+Started POST "/api/users" for ::1 at 2020-09-09 01:15:48 +1000
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"user", "password"=>"[FILTERED]", "email"=>"user@gmail.com", "user"=>{"name"=>"user", "email"=>"user@gmail.com"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "user@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "user@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+Completed 422 Unprocessable Entity in 27ms (Views: 0.1ms | ActiveRecord: 7.4ms | Allocations: 11342)
+
+
+Started POST "/api/users" for ::1 at 2020-09-09 01:21:02 +1000
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"user", "password"=>"[FILTERED]", "email"=>"user@gmail.com"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "user@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "user"], ["email", "user@gmail.com"], ["password_digest", "$2a$12$L8vp5qu/JvGcIl4sSryO9Oole6l/ILN9rlOlh4StDQMXe66ZhVCdm"]]
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:13:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 AND "users"."id" != $2 LIMIT $3[0m  [["email", "user@gmail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+Completed 201 Created in 191ms (Views: 0.2ms | ActiveRecord: 2.1ms | Allocations: 4844)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:21:30 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 404 Not Found in 3ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 953)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:22:26 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 404 Not Found in 19ms (Views: 0.2ms | ActiveRecord: 1.3ms | Allocations: 2294)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:23:14 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 404 Not Found in 7ms (Views: 0.2ms | ActiveRecord: 1.3ms | Allocations: 2293)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:27:26 +1000
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 404 Not Found in 16ms (Views: 0.1ms | ActiveRecord: 2.1ms | Allocations: 3414)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:27:49 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 404 Not Found in 7ms (Views: 0.1ms | ActiveRecord: 1.3ms | Allocations: 2265)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:29:10 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 404 Not Found in 11ms (Views: 0.1ms | ActiveRecord: 1.1ms | Allocations: 2268)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:30:05 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 404 Not Found in 7ms (Views: 0.2ms | ActiveRecord: 1.3ms | Allocations: 2410)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:31:24 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 500 Internal Server Error in 74ms (ActiveRecord: 1.1ms | Allocations: 46038)
+
+
+  
+NameError (undefined local variable or method `param' for #<Api::AuthController:0x000000000a7aee50>
+Did you mean?  params
+               params=
+               par
+               @_params):
+  
+app/controllers/api/auth_controller.rb:6:in `login'
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:31:33 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 404 Not Found in 7ms (Views: 0.1ms | ActiveRecord: 1.3ms | Allocations: 2310)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:32:00 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 1.2ms | Allocations: 2314)
+
+
+  
+TypeError (no implicit conversion of Symbol into Integer):
+  
+app/controllers/api/auth_controller.rb:6:in `[]'
+app/controllers/api/auth_controller.rb:6:in `login'
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:32:09 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 404 Not Found in 6ms (Views: 0.2ms | ActiveRecord: 1.1ms | Allocations: 2448)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:32:39 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 404 Not Found in 6ms (Views: 0.1ms | ActiveRecord: 1.2ms | Allocations: 2349)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:32:50 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 1.3ms | Allocations: 2312)
+
+
+  
+TypeError (no implicit conversion of Symbol into Integer):
+  
+app/controllers/api/auth_controller.rb:6:in `[]'
+app/controllers/api/auth_controller.rb:6:in `login'
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:33:02 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 1.3ms | Allocations: 2313)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1..2)):
+  
+app/controllers/api/auth_controller.rb:6:in `[]'
+app/controllers/api/auth_controller.rb:6:in `login'
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:33:10 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 404 Not Found in 6ms (Views: 0.2ms | ActiveRecord: 1.1ms | Allocations: 2353)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:33:33 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 500 Internal Server Error in 91ms (ActiveRecord: 1.3ms | Allocations: 45928)
+
+
+  
+NameError (undefined local variable or method `email' for #<Api::AuthController:0x000000000a18fbc8>):
+  
+app/controllers/api/auth_controller.rb:7:in `login'
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:33:46 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:5:in `login'
+Completed 404 Not Found in 9ms (Views: 0.1ms | ActiveRecord: 1.2ms | Allocations: 2312)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:35:59 +1000
+  
+SyntaxError (C:/Users/Toby/GA/FullStack-React_Rails/Cover_letter_app/app/controllers/api/auth_controller.rb:10: syntax error, unexpected tLABEL, expecting '}'
+...r.email, name: user.name token: token } }
+...                         ^~~~~~):
+  
+app/controllers/api/auth_controller.rb:10: syntax error, unexpected tLABEL, expecting '}'
+app/controllers/api/auth_controller.rb:10: syntax error, unexpected tLABEL, expecting '}'
+Started POST "/api/auth/login" for ::1 at 2020-09-09 01:36:24 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"user@gmail.com"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "user@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 207ms (Views: 0.1ms | ActiveRecord: 5.1ms | Allocations: 5049)
+
+
+Started GET "/api/users" for ::1 at 2020-09-09 01:37:15 +1000
+Processing by Api::UsersController#index as */*
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 154)
+
+
+Started GET "/api/users" for ::1 at 2020-09-09 01:38:59 +1000
+Processing by Api::UsersController#index as */*
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 151)
+
+
+Started GET "/api/users" for ::1 at 2020-09-09 01:39:12 +1000
+Processing by Api::UsersController#index as */*
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 151)
+
+
+Started GET "/api/users" for ::1 at 2020-09-09 01:39:44 +1000
+Processing by Api::UsersController#index as */*
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 140)
+
+
+Started GET "/api/users" for ::1 at 2020-09-09 01:40:21 +1000
+Processing by Api::UsersController#index as */*
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/users_controller.rb:5:in `index'
+Completed 200 OK in 14ms (Views: 4.5ms | ActiveRecord: 3.9ms | Allocations: 4844)
+
+

@@ -1,3 +1,3 @@
-class Api::ExperiencesController < ApplicationController
+class Resumes::ExperiencesController < ApplicationController
 
 end

@@ -1,3 +1,3 @@
-class Api::ProjectsController < ApplicationController
+class Resumes::ProjectsController < ApplicationController
 
 end

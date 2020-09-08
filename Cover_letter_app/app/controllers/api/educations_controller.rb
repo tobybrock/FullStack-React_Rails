@@ -1,3 +1,3 @@
-class Api::EducationsController < ApplicationController
+class Resumes::EducationsController < ApplicationController
 
 end
