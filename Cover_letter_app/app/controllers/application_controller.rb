@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
 
 
   def encode_token(user_id)
-    exp = Time.now.to_i + 4 * 3600
+    exp = Time.now.to_i + 1 * 3600
     exp_payload = {id: user_id, exp: exp}
 
     JWT.encode(exp_payload, 'I_Like_Shorts')
@@ -15,7 +15,6 @@ class ApplicationController < ActionController::API
       begin
         payload = JWT.decode token[1], 'I_Like_Shorts'
         @user_id = payload[0]['id']
-
       rescue StandardError
         nil
       end

@@ -1,29 +1,29 @@
 class Api::ResumesController < ApplicationController
-  #before_action :user_exists
+  before_action :user_exists
   def index
-    render json: User.find(@user_id).todos.all
+    render json: User.find(@user_id).resumes.all
   end
 
   def create
-    render json: User.find(@user_id).todos.create(todo_params)
+    render json: User.find(@user_id).resumes.create(resume_params)
   end
 
   def show
-    render json: User.find(@user_id).todos.find(params[:id])
+    render json: User.find(@user_id).resumes.find(params[:id])
   end
 
   def update
-    todo = User.find(@user_id).todos.find(params[:id])
-    render json: todo.update(todo_params)
+    resume = User.find(@user_id).resumes.find(params[:id])
+    render json: resume.update(resume_params)
   end
 
   def destroy
-    render json: User.find(@user_id).todos.destroy(params[:id])
+    render json: User.find(@user_id).resumes.destroy(params[:id])
   end
 
   private
 
   def resume_params
-    params.required(:todo).permit(:title, :completed, :description)
+    params.required(:resume).permit(:name, :phone, :linkedin, :github, :skills, :experience, :education, :project, :references, :user_id)
   end
 end

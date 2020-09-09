@@ -2,25 +2,21 @@ class Api::UsersController < ApplicationController
   before_action :user_exists, except: :create
 
   def index
-    render json: User.all
+    user = User.find(@user_id)
+    render json: { id: user.id, name: user.name }
   end
 
   def show
-    render json: User.find(user_params)
+    render json: User.all
   end
 
   def create
     user = User.create(user_params)
-    if user.valid?
-      render json: user, status: 201
-    else
-      render json: { message: 'Unable to create user', errors: user.errors.full_messages }, status: 422
-      end
+    render json: user
   end
 
   def update
-    user = User.find(params[:id])
-    render json: user.update(user_params) # doesn't reset password
+    render json: User.find(@user_id).update(user_params)
   end
 
   def destroy
