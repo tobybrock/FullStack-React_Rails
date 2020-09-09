@@ -10,10 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_051453) do
+ActiveRecord::Schema.define(version: 2020_09_09_102811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "educations", force: :cascade do |t|
+    t.string "institution"
+    t.string "qualification"
+    t.string "desc"
+    t.integer "resume_id"
+    t.integer "year"
+  end
+
+  create_table "experiences", force: :cascade do |t|
+    t.string "organisation"
+    t.string "position"
+    t.string "duration"
+    t.string "desc"
+    t.integer "resume_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "title"
+    t.string "link"
+    t.string "desc"
+    t.integer "resume_id"
+  end
 
   create_table "resumes", force: :cascade do |t|
     t.string "name"
@@ -26,26 +49,6 @@ ActiveRecord::Schema.define(version: 2020_09_09_051453) do
     t.string "project"
     t.string "references"
     t.integer "user_id"
-  end
-
-  create_table "resumes_educations", force: :cascade do |t|
-    t.string "institution"
-    t.date "year"
-    t.string "qualification"
-    t.string "desc"
-  end
-
-  create_table "resumes_experiences", force: :cascade do |t|
-    t.string "organisation"
-    t.string "position"
-    t.string "duration"
-    t.string "desc"
-  end
-
-  create_table "resumes_projects", force: :cascade do |t|
-    t.string "title"
-    t.string "link"
-    t.string "desc"
   end
 
   create_table "users", force: :cascade do |t|

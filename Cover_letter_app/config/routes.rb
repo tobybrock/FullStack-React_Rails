@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   namespace :api do
     resources :users
     resources :resumes do
-      resources :educations
-      resources :experiences
-      resources :projects
+      resources :educations, except: [:show]
+      resources :experiences, except: [:show]
+      resources :projects, except: [:show]
     end
     get 'auth/status', to: 'auth#status'
     post 'auth/login', to: 'auth#login'

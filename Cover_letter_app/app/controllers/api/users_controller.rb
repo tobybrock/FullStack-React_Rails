@@ -12,7 +12,8 @@ class Api::UsersController < ApplicationController
 
   def create
     user = User.create(user_params)
-    render json: user
+    render json: user, status: 201
+
   end
 
   def update
@@ -28,7 +29,8 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
-    params.required(:user).permit(:name, :password, :email)
+    params.require(:user).permit(:name, :password, :email)
+
   end
 
 end
