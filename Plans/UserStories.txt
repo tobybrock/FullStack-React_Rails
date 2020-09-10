@@ -1,0 +1,19 @@
+Resume creator pdf
+
+User stories:
+As a <role> I can <capability>, so that <receive benefit>
+As a student I can create personilized templates, so that I can experiment and find a resume that works for me
+-drag and drop functionality
+-css edited through frontend
+-resume sent to backend to create resume pdf
+
+As a teacher I can quickly edit my resume, so that I can easily apply to a mutiutude of jobs
+-ability to load up resumes
+-save templates
+-easily edited
+
+As a recruiter I can see other users, so that I can check up on my recruitees / get new recruitees
+-user tags i.e. student
+-public user profiles
+-potential share of resume templates with popular leaderboard
+cameron shorteron

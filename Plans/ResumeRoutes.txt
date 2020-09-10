@@ -1,0 +1,31 @@
+                Prefix Verb   URI Pattern                                       Controller#Action
+             api_users GET    /api/users(.:format)                              api/users#index
+                       POST   /api/users(.:format)                              api/users#create
+              api_user GET    /api/users/:id(.:format)                          api/users#show
+                       PATCH  /api/users/:id(.:format)                          api/users#update
+                       PUT    /api/users/:id(.:format)                          api/users#update
+                       DELETE /api/users/:id(.:format)                          api/users#destroy
+ api_resume_educations GET    /api/resumes/:resume_id/educations(.:format)      api/educations#index
+                       POST   /api/resumes/:resume_id/educations(.:format)      api/educations#create
+  api_resume_education PATCH  /api/resumes/:resume_id/educations/:id(.:format)  api/educations#update
+                       PUT    /api/resumes/:resume_id/educations/:id(.:format)  api/educations#update
+                       DELETE /api/resumes/:resume_id/educations/:id(.:format)  api/educations#destroy
+api_resume_experiences GET    /api/resumes/:resume_id/experiences(.:format)     api/experiences#index
+                       POST   /api/resumes/:resume_id/experiences(.:format)     api/experiences#create
+ api_resume_experience PATCH  /api/resumes/:resume_id/experiences/:id(.:format) api/experiences#update
+                       PUT    /api/resumes/:resume_id/experiences/:id(.:format) api/experiences#update
+                       DELETE /api/resumes/:resume_id/experiences/:id(.:format) api/experiences#destroy
+   api_resume_projects GET    /api/resumes/:resume_id/projects(.:format)        api/projects#index
+                       POST   /api/resumes/:resume_id/projects(.:format)        api/projects#create
+    api_resume_project PATCH  /api/resumes/:resume_id/projects/:id(.:format)    api/projects#update
+                       PUT    /api/resumes/:resume_id/projects/:id(.:format)    api/projects#update
+                       DELETE /api/resumes/:resume_id/projects/:id(.:format)    api/projects#destroy
+           api_resumes GET    /api/resumes(.:format)                            api/resumes#index
+                       POST   /api/resumes(.:format)                            api/resumes#create
+            api_resume GET    /api/resumes/:id(.:format)                        api/resumes#show
+                       PATCH  /api/resumes/:id(.:format)                        api/resumes#update
+                       PUT    /api/resumes/:id(.:format)                        api/resumes#update
+                       DELETE /api/resumes/:id(.:format)                        api/resumes#destroy
+       api_auth_status GET    /api/auth/status(.:format)                        api/auth#status
+        api_auth_login POST   /api/auth/login(.:format)                         api/auth#login
+       api_auth_logout POST   /api/auth/logout(.:format)                        api/auth#logout
