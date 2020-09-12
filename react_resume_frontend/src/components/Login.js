@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import { register } from "../api";
-import { useHistory } from "react-router-dom";
+import { login, setToken } from "../api";
+import { useHistory, Link } from "react-router-dom";
 
-function Register() {
+function Login(props) {
   const [formData, setFormData] = useState({});
   const history = useHistory();
 
   const updateData = (e) => {
-    const name = e.currentTarget.name;
+    const email = e.currentTarget.name;
     const target = e.currentTarget;
     //ternary used to account for checkbox
     const value = target.type === "checkbox" ? target.checked : target.value;
     let obj = { ...formData };
-    obj[name] = value;
+    obj[email] = value;
     setFormData(obj);
   };
 
@@ -20,10 +20,13 @@ function Register() {
     e.preventDefault();
     console.log("submitting", formData);
 
-    register(formData)
+    login(formData)
       .then((result) => {
-        console.log("user created", result);
-        history.push("/login");
+        console.log("logged in", result);
+        props.setLoggedIn(true);
+        props.setUser(result.user);
+        setToken(result.user.token);
+        history.push("/profile");
       })
       .catch((e) => {
         console.log("error", e);
@@ -32,21 +35,24 @@ function Register() {
 
   return (
     <>
-      <h1>Register</h1>
+      <h1>Login Works</h1>
 
       <form onSubmit={submit}>
-        <label htmlFor="name">Name</label>
-        <input type="text" name="name" onChange={updateData} />
         <label htmlFor="email">Email</label>
         <input type="text" name="email" onChange={updateData} />
 
         <label htmlFor="password">Password</label>
         <input type="password" name="password" onChange={updateData} />
 
-        <button>Register</button>
+        <button>Login</button>
       </form>
+      <Link to="/register">
+        <button>
+          <span>Register</span>
+        </button>
+      </Link>
     </>
   );
 }
 
-export default Register;
+export default Login;

@@ -38,7 +38,6 @@ export default function Nav() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Create a Resume!
           </Typography>
           <Button style={{backgroundColor: '#7395AE'}} component={Link} to={'/'}>Home</Button>
           <Button style={{backgroundColor: '#7395AE'}} component={Link} to={'/login'}>Login</Button>
