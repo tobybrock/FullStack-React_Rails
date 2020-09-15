@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { register } from "../api";
 import { useHistory } from "react-router-dom";
+import { TextField, Button, Card, Grid } from "@material-ui/core";
 
 function Register() {
   const [formData, setFormData] = useState({});
@@ -32,19 +33,52 @@ function Register() {
 
   return (
     <>
-      <h1>Register</h1>
-
-      <form onSubmit={submit}>
-        <label htmlFor="name">Name</label>
-        <input type="text" name="name" onChange={updateData} />
-        <label htmlFor="email">Email</label>
-        <input type="text" name="email" onChange={updateData} />
-
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" onChange={updateData} />
-
-        <button>Register</button>
-      </form>
+      <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justify="center"
+        style={{ minHeight: "100vh" }}
+      >
+        <Grid item xs={3}>
+          <Card>
+            
+              <h1>Register</h1>
+            
+            <form>
+              <TextField
+                id="outlined-basic"
+                label="email"
+                name="email"
+                onChange={updateData}
+                variant="outlined"
+              />
+              <br />
+              <TextField
+                id="outlined-basic"
+                label="name"
+                name="name"
+                onChange={updateData}
+                variant="outlined"
+              />
+              <br />
+              <TextField
+                id="outlined-basic"
+                label="password"
+                type="password"
+                name="password"
+                onChange={updateData}
+                variant="outlined"
+              />
+              <br />
+              <Button style={{ backgroundColor: "#7395AE", margin:20}} onClick={submit}>
+                Register
+              </Button>
+            </form>
+          </Card>
+        </Grid>
+      </Grid>
     </>
   );
 }

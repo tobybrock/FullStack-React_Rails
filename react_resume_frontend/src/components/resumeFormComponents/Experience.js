@@ -1,98 +1,129 @@
-import React, { Component } from 'react';
-
+import React, { Component } from "react";
+import {
+  Card,
+  Grid,
+  TextField,
+  Button,
+  CardHeader,
+  CardContent,
+} from "@material-ui/core";
 
 class Experience extends Component {
+  back = (e) => {
+    e.preventDefault();
+    this.props.prevStep();
+  };
 
-    back = e => {
-        e.preventDefault();
-        this.props.prevStep();
-    };
+  continue = (e) => {
+    e.preventDefault();
+    this.props.nextStep();
+  };
 
-    continue = e => {
-        e.preventDefault();
-        this.props.nextStep();
-    }
+  render() {
+    const { values, handleChange } = this.props;
+    return (
+      <>
+        <Grid container spacing={3}>
+          <Grid xs={12} item>
+              <h1>Enter your Experience</h1>
+            <br />
+            <Card>
+              <CardHeader title="Experience 1" />
+              <CardContent>
+                <TextField
+                  placeholder="Enter Organisation"
+                  label="Organisation"
+                  onChange={handleChange("expOrg1")}
+                  defaultValue={values.expOrg1}
+                  margin="normal"
+                  fullWidth
+                />
+                <br />
+                <TextField
+                  placeholder="Enter Your Position"
+                  label="Position"
+                  onChange={handleChange("expPos1")}
+                  defaultValue={values.expPos1}
+                  margin="normal"
+                  fullWidth
+                />
+                <br />
+                <TextField
+                  placeholder="Enter the duration you were at the job"
+                  label="Duration"
+                  onChange={handleChange("expDur1")}
+                  defaultValue={values.expDur1}
+                  margin="normal"
+                  fullWidth
+                />
+                <br />
+                <TextField
+                  placeholder="Enter a description of your job"
+                  label="Description"
+                  onChange={handleChange("expDesc1")}
+                  defaultValue={values.expDesc1}
+                  margin="normal"
+                  fullWidth
+                />
 
-    
+                <br />
+              </CardContent>
+            </Card>
 
-    render() {
-        const { values, handleChange } = this.props;
-        return (
-            <div className="card animated fadeInLeft">
-                <div className="card-body">
-
-                    <h3 className="card-title">Experience Info</h3>
-                    <hr />
-                </div>
-                <form onSubmit={this.continue}>
-                    
-                    
-
-
-
-                    <div className="row col-lg-10 mx-auto">
-                        <div className="col-lg-12 text-left">
-                            <h3><b><i className="fas fa-check-circle mr-1"></i>1</b></h3>
-                        </div>
-                        
-                        <div className="col-lg-4 text-left">
-                            <label>Institute/Organisation*</label>
-                            <input type="text" name="exp1_org" className="form-control" defaultValue={values.status === 1 ? '' : values.exp1_org} onChange={handleChange} required />
-                        </div>
-                        <div className="col-lg-4 text-left">
-                            <label>Position*</label>
-                            <input type="text" name="exp1_pos" className="form-control" defaultValue={values.status === 1 ? '' : values.exp1_pos} onChange={handleChange} required />
-                        </div>
-                        <div className="col-lg-4 text-left">
-                            <label>Duration*</label>
-                            <input type="text" name="exp1_dur" className="form-control" defaultValue={values.status === 1 ? '' : values.exp1_dur} onChange={handleChange} required />
-                        </div>
-                    </div>
-                    <div className="row col-lg-10 mx-auto">
-                        <div className="col-lg-12 text-left">
-                            <label>Description*</label>
-                            <input type="text" name="exp1_desc" className="form-control" defaultValue={values.status === 1 ? '' : values.exp1_desc} onChange={handleChange} required />
-                        </div>
-                    </div>
-
-                    <br/>
-
-                        
-
-                    <div className="row col-lg-10 mx-auto">
-                        <div className="col-lg-12 text-left">
-                            <h3><b><i className="fas fa-check-circle mr-1"></i>2</b></h3>
-                            <hr/>
-                        </div>
-                        <div className="col-lg-4 text-left">
-                            <label>Institute/Organisation*</label>
-                            <input type="text" name="exp2_org" className="form-control" defaultValue={values.status === 1 ? '' : values.exp2_org} onChange={handleChange} required />
-                        </div>
-                        <div className="col-lg-4 text-left">
-                            <label>Position*</label>
-                            <input type="text" name="exp2_pos" className="form-control" defaultValue={values.status === 1 ? '' : values.exp2_pos} onChange={handleChange} required />
-                        </div>
-                        <div className="col-lg-4 text-left">
-                            <label>Duration*</label>
-                            <input type="text" name="exp2_dur" className="form-control" defaultValue={values.status === 1 ? '' : values.exp2_dur} onChange={handleChange} required />
-                        </div>
-                    </div>
-                    <div className="row col-lg-10 mx-auto">
-                        <div className="col-lg-12 text-left">
-                            <label>Description*</label>
-                            <input type="text" name="exp2_desc" className="form-control" defaultValue={values.status === 1 ? '' : values.exp2_desc} onChange={handleChange} required />
-                        </div>
-                    </div>
-                    <br/>
-                    <div className="container text-center">
-                        <button type="button" className="btn btn-info" onClick={this.back}><i className="fas fa-angle-left mr-1"></i>Back</button>
-                        <button type="submit" className="btn btn-info">Next<i className="fas fa-angle-right ml-1"></i></button>
-                    </div>
-                    <br/>
-                </form>
-            </div>
-        )
-    }
+            <Card>
+            <CardHeader title="Experience 2" />
+              <CardContent>
+                <TextField
+                  placeholder="Enter Organisation"
+                  label="Organisation"
+                  onChange={handleChange("expOrg2")}
+                  defaultValue={values.expOrg2}
+                  margin="normal"
+                  fullWidth
+                />
+                <br />
+                <TextField
+                  placeholder="Enter Your Position"
+                  label="Position"
+                  onChange={handleChange("expPos2")}
+                  defaultValue={values.expPos2}
+                  margin="normal"
+                  fullWidth
+                />
+                <br />
+                <TextField
+                  placeholder="Enter the duration you were at the job"
+                  label="Duration"
+                  onChange={handleChange("expDur2")}
+                  defaultValue={values.expDur2}
+                  margin="normal"
+                  fullWidth
+                />
+                <br />
+                <TextField
+                  placeholder="Enter a description of your job"
+                  label="Description"
+                  onChange={handleChange("expDesc2")}
+                  defaultValue={values.expDesc2}
+                  margin="normal"
+                  fullWidth
+                />
+                <br />
+              </CardContent>
+            </Card>
+            <br />
+            <Button style={{backgroundColor: '#7395AE', margin: 20}} variant="contained" onClick={this.back}>
+              Back
+            </Button>
+            
+            <Button style={{backgroundColor: '#7395AE', margin: 20}} variant="contained" onClick={this.continue}>
+              Continue
+            </Button>
+          </Grid>
+        </Grid>
+      </>
+    );
+  }
 }
 
 export default Experience;

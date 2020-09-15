@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { login, setToken } from "../api";
 import { useHistory, Link } from "react-router-dom";
-
+import { TextField, Button, Grid, Card} from "@material-ui/core"
 function Login(props) {
   const [formData, setFormData] = useState({});
   const history = useHistory();
@@ -35,22 +35,30 @@ function Login(props) {
 
   return (
     <>
-      <h1>Login Works</h1>
+     <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justify="center"
+        style={{ minHeight: "100vh" }}
+      >
+        <Grid item xs={3}>
+          <Card>
+      <h1>Login</h1>
 
-      <form onSubmit={submit}>
-        <label htmlFor="email">Email</label>
-        <input type="text" name="email" onChange={updateData} />
-
-        <label htmlFor="password">Password</label>
-        <input type="password" name="password" onChange={updateData} />
-
-        <button>Login</button>
-      </form>
-      <Link to="/register">
-        <button>
-          <span>Register</span>
-        </button>
-      </Link>
+      <form>
+        <TextField id="outlined-basic" label="email" name="email" onChange={updateData} variant="outlined" />
+        <br />
+        <TextField id="outlined-basic" label="password" type="password" name="password" onChange={updateData} variant="outlined" />
+        <br />
+        <Button style={{backgroundColor: '#7395AE', margin:20}} onClick={submit}>Login</Button>
+        </form>
+        <h2>Don't have an account?</h2>
+        <Button style={{backgroundColor: '#7395AE', margin:20}} component={Link} to={'/register'}>Register Here</Button>
+        </Card>
+        </Grid>
+      </Grid>
     </>
   );
 }

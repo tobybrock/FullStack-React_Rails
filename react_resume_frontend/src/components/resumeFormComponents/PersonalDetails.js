@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Card, TextField, Button, Grid, CardContent} from '@material-ui/core'
+
 
 class PersonalDetails extends Component {
 
@@ -8,59 +10,80 @@ class PersonalDetails extends Component {
     };
 
     
+        render() {
+            const { values, handleChange } = this.props;
+            return (
+              
+                <>
+                 <Grid container spacing={3} >
+                 <Grid xs={12} item  >
+                     <h1>Enter your personal details</h1>
+                    <Card>
+                    <CardContent>
+                    <TextField
+                      placeholder="Enter Your Name"
+                      label="Name"
+                      onChange={handleChange('name')}
+                      defaultValue={values.name}
+                      margin="normal"
+                      fullWidth
+                    />
+                    <br />
+                    <TextField
+                      placeholder="Enter Your Phone Number"
+                      label="Phone Number"
+                      onChange={handleChange('phone')}
+                      defaultValue={values.phone}
+                      margin="normal"
+                      fullWidth
+                    />
+                    <br />
+                    <TextField
+                      placeholder="Enter Your LinkedIn"
+                      label="LinkedIn"
+                      onChange={handleChange('linkedin')}
+                      defaultValue={values.linkedin}
+                      margin="normal"
+                      fullWidth
+                    />
+                    <br />
+                    <TextField
+                      placeholder="Enter Your Github"
+                      label="Github"
+                      onChange={handleChange('github')}
+                      defaultValue={values.github}
+                      margin="normal"
+                      fullWidth
+                    />
+                    <br />
+                    <TextField
+                      placeholder="Enter Your Skills"
+                      label="Skills"
+                      onChange={handleChange('skills')}
+                      defaultValue={values.skills}
+                      margin="normal"
+                      fullWidth
+                    />
+                    
+                    </CardContent>
+                    </Card>
 
-      
-    render() {
-        const { values, handleChange } = this.props;
-        return (
-            <div className="card animated fadeInLeft">
-                <div className="card-body">
+                    <br />
+                    <Button
+                      style={{backgroundColor: '#7395AE'}}
+                      variant="contained"
+                      onClick={this.continue}
+                    >Continue</Button>
+                    
 
-                    <h3 className="card-title">Personal Info</h3>
-                    <hr />
-                </div>
-                <form onSubmit={this.continue}>
-                    <div className="row col-lg-10 mx-auto">
-                        <div className="col-lg-4 text-left">
-                            <label>Name*</label>
-                            <input type="text" name="name" className="form-control" onChange={handleChange} defaultValue={values.status === 1 ? '' : values.name} required />
-                        </div>
-                        <div className="col-lg-4 text-left">
-                            <label>Email*</label>
-                            <input type="email" name="email" className="form-control" onChange={handleChange}  defaultValue={values.status === 1 ? '' : values.email} required />
-                        </div>
-                        <div className="col-lg-4 text-left">
-                            <label>Mobile*</label>
-                            <input type="text" name="phone" className="form-control" onChange={handleChange} defaultValue={values.status === 1 ? '' : values.phone} required />
-                        </div>
-                    </div>
-                    <br />
-                    <div className="row col-lg-10 mx-auto">
-                        <div className="col-lg-6 text-left">
-                            <label>Linkedin</label>
-                            <input type="text" name="linkedin" className="form-control" defaultValue={values.status === 1 ? '' : values.linkedin} onChange={handleChange} />
-                        </div>
-                        <div className="col-lg-6 text-left">
-                            <label>Github</label>
-                            <input type="text" name="github" className="form-control" defaultValue={values.status === 1 ? '' : values.github} onChange={handleChange} />
-                        </div>
-                    </div>
-                    <br />
-                    <div className="row col-lg-10 mx-auto">
-                        <div className="col-lg-12 text-left">
-                            <label>Skills* (Separate each skill with a space and a comma)</label>
-                            <input type="text" name="skills" className="form-control"  defaultValue={values.status === 1 ? '' : values.skills} onChange={handleChange} />
-                        </div>
-                    </div>
-                    <br />
-                    <div className="container text-center"><button type="submit" className="btn btn-info">Next<i className="fas fa-angle-right ml-1"></i></button></div>
-                    <br/>
-                </form>
+                  </Grid>
+                  </Grid>
+                  
+                </>
             
-            </div>
-        )
-    }
-}
+            );
+          }
+        }
 
 
 export default PersonalDetails;
