@@ -24,6 +24,6 @@ class Api::ResumesController < ApplicationController
   private
 
   def resume_params
-    params.required(:resume).permit(:name, :phone, :linkedin, :github, :skills, :experience, :education, :project, :references, :user_id)
+    params.required(:resume).permit(:name, :phone, :linkedin, :github, :skills, :user_id, experience: [], education: [], project: [])
   end
 end

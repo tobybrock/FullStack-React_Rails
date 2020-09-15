@@ -4828,3 +4828,2078 @@ Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms | Allocations: 4
 NoMethodError (undefined method `[]' for nil:NilClass):
   
 app/controllers/api/auth_controller.rb:6:in `login'
+Started POST "/api/users" for ::1 at 2020-09-12 15:10:43 +1000
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::UsersController#create as */*
+  Parameters: {"name"=>"Tobie", "email"=>"tobie@gmail.com", "password"=>"[FILTERED]", "user"=>{"name"=>"Tobie", "email"=>"tobie@gmail.com"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+  [1m[36mUser Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "tobie@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+Completed 201 Created in 53ms (Views: 0.2ms | ActiveRecord: 7.8ms | Allocations: 9808)
+
+
+Started POST "/api/users" for ::1 at 2020-09-12 15:13:08 +1000
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"test", "email"=>"test@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+  [1m[36mUser Create (1.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "test"], ["email", "test@gmail.com"], ["password_digest", "$2a$12$qop4WbBWswalyBhTcr85KO0jkakWbdqfTTIMU5RFU59gUEiW2agjG"]]
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+Completed 201 Created in 185ms (Views: 0.2ms | ActiveRecord: 2.8ms | Allocations: 3890)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-12 15:14:26 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 184ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 1178)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-12 15:17:16 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 183ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 902)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-12 15:27:22 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 186ms (Views: 0.1ms | ActiveRecord: 1.0ms | Allocations: 966)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-12 15:36:24 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"undefined"=>"test@gmail.com"}, "auth"=>{"user"=>{"undefined"=>"test@gmail.com"}}}
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 404 Not Found in 4ms (Views: 0.1ms | ActiveRecord: 1.8ms | Allocations: 939)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-12 15:36:42 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"undefined"=>"password"}, "auth"=>{"user"=>{"undefined"=>"password"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 404 Not Found in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 862)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-12 15:37:49 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 193ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 891)
+
+
+Started POST "/api/users" for ::1 at 2020-09-12 16:08:25 +1000
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"test1", "email"=>"test1@gmail.com", "password"=>"[FILTERED]"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+  [1m[36mUser Exists? (1.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test1@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "test1"], ["email", "test1@gmail.com"], ["password_digest", "$2a$12$FnHp.4rK6dL6ZYg8SnopfOMHz/hvEP8O03WQuPqO4P4uRhpHnwwj."]]
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+Completed 201 Created in 225ms (Views: 0.3ms | ActiveRecord: 3.9ms | Allocations: 3784)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-12 16:08:31 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test1", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test1", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test1"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 404 Not Found in 3ms (Views: 0.1ms | ActiveRecord: 0.4ms | Allocations: 763)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-12 16:08:43 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test1", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test1", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test1"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 404 Not Found in 2ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 711)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-12 16:09:08 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test1@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 185ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-12 16:25:56 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test1@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test1@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 189ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 955)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-12 20:00:44 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"toby@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"toby@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "toby@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 182ms (Views: 0.4ms | ActiveRecord: 1.0ms | Allocations: 957)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-12 22:19:10 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 187ms (Views: 0.4ms | ActiveRecord: 1.1ms | Allocations: 955)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-14 15:55:59 +1000
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 218ms (Views: 0.1ms | ActiveRecord: 7.0ms | Allocations: 6243)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-14 15:56:00 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 195ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 906)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-14 16:40:55 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 180ms (Views: 0.4ms | ActiveRecord: 1.0ms | Allocations: 966)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-14 16:42:41 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 902)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-14 18:49:52 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 188ms (Views: 0.7ms | ActiveRecord: 1.1ms | Allocations: 966)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-14 20:13:22 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 181ms (Views: 0.4ms | ActiveRecord: 1.0ms | Allocations: 955)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 02:54:31 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 195ms (Views: 0.7ms | ActiveRecord: 1.1ms | Allocations: 957)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-15 05:08:11 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"toby2", "phone"=>"0413943212", "linkedin"=>"linked", "github"=>"git", "skills"=>"none", "experience"=>"all", "education"=>"none", "project"=>"app", "references"=>"me"}}
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 234)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 05:08:54 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 193ms (Views: 0.1ms | ActiveRecord: 1.1ms | Allocations: 4596)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-15 05:22:24 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"w", "phone"=>"w", "linkedin"=>"w", "github"=>"w", "skills"=>"w", "experience"=>["w", "w", "w", "w", "w", "w", "w", "w"], "education"=>["r", "r", "r", "r", "r", "r", "r", "r"], "project"=>["e", "e", "e", "e", "e", "e"]}}
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 122)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 05:22:48 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 181ms (Views: 0.1ms | ActiveRecord: 0.9ms | Allocations: 955)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-15 05:23:26 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"q", "phone"=>"041", "linkedin"=>"q", "github"=>"q", "skills"=>"q", "experience"=>["w", "w", "w", "w", "w", "w", "w", "w"], "education"=>["r", "r", "r", "r", "r", "r", "r", "r"], "project"=>["e", "e", "e", "e", "e", "e"]}}
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 122)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 05:30:05 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 182ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 957)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 05:35:31 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 404 Not Found in 2ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 714)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 05:35:33 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 711)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 05:35:37 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 404 Not Found in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 711)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 05:35:43 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 19:37:02 +1000
+  [1m[35m (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 219ms (Views: 0.1ms | ActiveRecord: 8.1ms | Allocations: 6235)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-15 19:37:37 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"r", "phone"=>"r", "linkedin"=>"r", "github"=>"r", "skills"=>"r", "experience"=>["1", "1", "1", "1", "1", "1", "1", "1"], "education"=>["2", "2", "2", "2", "2", "2", "2", "2"], "project"=>["1", "1", "1", "1", "1", "1"]}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+[31mUnpermitted parameters: :experience, :education, :project[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[36mResume Create (3.8ms)[0m  [1m[32mINSERT INTO "resumes" ("name", "phone", "linkedin", "github", "skills", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "r"], ["phone", 0], ["linkedin", "r"], ["github", "r"], ["skills", "r"], ["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+Completed 200 OK in 78ms (Views: 0.2ms | ActiveRecord: 7.3ms | Allocations: 15724)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 19:47:53 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 187ms (Views: 0.1ms | ActiveRecord: 1.0ms | Allocations: 4772)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-15 19:48:25 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"t", "phone"=>"t", "linkedin"=>"t", "github"=>"t", "skills"=>"t", "experience"=>["o", "o", "o", "o", "o", "o", "o", "o"], "education"=>["y", "y", "y", "y", "y", "y", "y", "y"], "project"=>["b", "b", "b", "b", "b", "b"]}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[36mResume Create (0.9ms)[0m  [1m[32mINSERT INTO "resumes" ("name", "phone", "linkedin", "github", "skills", "experience", "education", "project", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "t"], ["phone", 0], ["linkedin", "t"], ["github", "t"], ["skills", "t"], ["experience", "[\"o\", \"o\", \"o\", \"o\", \"o\", \"o\", \"o\", \"o\"]"], ["education", "[\"y\", \"y\", \"y\", \"y\", \"y\", \"y\", \"y\", \"y\"]"], ["project", "[\"b\", \"b\", \"b\", \"b\", \"b\", \"b\"]"], ["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+Completed 200 OK in 16ms (Views: 0.2ms | ActiveRecord: 2.4ms | Allocations: 11365)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-15 19:50:40 +1000
+Processing by Api::ResumesController#create as */*
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 125)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 19:50:54 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-15 19:51:07 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"", "phone"=>"", "linkedin"=>"", "github"=>"", "skills"=>"", "experience"=>["", "", "", "", "", "", "", ""], "education"=>["", "", "", "", "", "", "", ""], "project"=>["", "", "", "", "", ""]}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[36mResume Create (0.3ms)[0m  [1m[32mINSERT INTO "resumes" ("name", "linkedin", "github", "skills", "experience", "education", "project", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", ""], ["linkedin", ""], ["github", ""], ["skills", ""], ["experience", "[\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"]"], ["education", "[\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"]"], ["project", "[\"\", \"\", \"\", \"\", \"\", \"\"]"], ["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+Completed 200 OK in 8ms (Views: 0.4ms | ActiveRecord: 1.0ms | Allocations: 4001)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 20:47:28 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 182ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 955)
+
+
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to ChangeYearToString (20200915105305)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (31.5ms)[0m  [1m[35mALTER TABLE "resumes" ALTER COLUMN "phone" TYPE character varying[0m
+  [1m[36mprimary::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200915105305"]]
+  [1m[35m (2.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/api/auth/login" for ::1 at 2020-09-15 21:41:02 +1000
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 214ms (Views: 0.1ms | ActiveRecord: 5.2ms | Allocations: 6233)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-15 21:41:29 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"q", "phone"=>"q", "linkedin"=>"q", "github"=>"q", "skills"=>"q", "experience"=>["w", "w", "w", "w", "w", "w", "w", "w"], "education"=>["r", "r", "r", "r", "r", "r", "r", "r"], "project"=>["e", "e", "e", "e", "e", "e"]}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[36mResume Create (1.1ms)[0m  [1m[32mINSERT INTO "resumes" ("name", "phone", "linkedin", "github", "skills", "experience", "education", "project", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "q"], ["phone", "q"], ["linkedin", "q"], ["github", "q"], ["skills", "q"], ["experience", "[\"w\", \"w\", \"w\", \"w\", \"w\", \"w\", \"w\", \"w\"]"], ["education", "[\"r\", \"r\", \"r\", \"r\", \"r\", \"r\", \"r\", \"r\"]"], ["project", "[\"e\", \"e\", \"e\", \"e\", \"e\", \"e\"]"], ["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+Completed 200 OK in 68ms (Views: 0.2ms | ActiveRecord: 4.1ms | Allocations: 15876)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 21:44:07 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 903)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-15 21:44:31 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"q", "phone"=>"q", "linkedin"=>"q", "github"=>"q", "skills"=>"q", "experience"=>["w", "w", "w", "w", "w", "w", "w", "w"], "education"=>["r", "r", "r", "r", "r", "r", "r", "r"], "project"=>["e", "e", "e", "e", "e", "e"]}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[36mResume Create (0.2ms)[0m  [1m[32mINSERT INTO "resumes" ("name", "phone", "linkedin", "github", "skills", "experience", "education", "project", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "q"], ["phone", "q"], ["linkedin", "q"], ["github", "q"], ["skills", "q"], ["experience", "[\"w\", \"w\", \"w\", \"w\", \"w\", \"w\", \"w\", \"w\"]"], ["education", "[\"r\", \"r\", \"r\", \"r\", \"r\", \"r\", \"r\", \"r\"]"], ["project", "[\"e\", \"e\", \"e\", \"e\", \"e\", \"e\"]"], ["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 4046)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 21:45:13 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 902)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-15 21:45:38 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"q", "phone"=>"q", "linkedin"=>"q", "github"=>"q", "skills"=>"q", "experience"=>["w", "q", "q", "q", "w", "w", "w", "w"], "education"=>["e", "e", "e", "e", "e", "e", "e", "e"], "project"=>["w", "w", "w", "w", "w", "w"]}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[36mResume Create (0.2ms)[0m  [1m[32mINSERT INTO "resumes" ("name", "phone", "linkedin", "github", "skills", "experience", "education", "project", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "q"], ["phone", "q"], ["linkedin", "q"], ["github", "q"], ["skills", "q"], ["experience", "[\"w\", \"q\", \"q\", \"q\", \"w\", \"w\", \"w\", \"w\"]"], ["education", "[\"e\", \"e\", \"e\", \"e\", \"e\", \"e\", \"e\", \"e\"]"], ["project", "[\"w\", \"w\", \"w\", \"w\", \"w\", \"w\"]"], ["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 4030)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 21:46:47 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 887)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-15 21:46:54 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"q", "phone"=>"", "linkedin"=>"", "github"=>"", "skills"=>"", "experience"=>["", "", "", "", "", "", "", ""], "education"=>["", "", "", "", "", "", "", ""], "project"=>["", "", "", "", "", ""]}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[36mResume Create (0.2ms)[0m  [1m[32mINSERT INTO "resumes" ("name", "phone", "linkedin", "github", "skills", "experience", "education", "project", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "q"], ["phone", ""], ["linkedin", ""], ["github", ""], ["skills", ""], ["experience", "[\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"]"], ["education", "[\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"]"], ["project", "[\"\", \"\", \"\", \"\", \"\", \"\"]"], ["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 4024)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 21:48:35 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-15 21:48:43 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"", "phone"=>"", "linkedin"=>"", "github"=>"", "skills"=>"", "experience"=>["", "", "", "", "", "", "", ""], "education"=>["", "", "", "", "", "", "", ""], "project"=>["", "", "", "", "", ""]}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[36mResume Create (0.2ms)[0m  [1m[32mINSERT INTO "resumes" ("name", "phone", "linkedin", "github", "skills", "experience", "education", "project", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", ""], ["phone", ""], ["linkedin", ""], ["github", ""], ["skills", ""], ["experience", "[\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"]"], ["education", "[\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"]"], ["project", "[\"\", \"\", \"\", \"\", \"\", \"\"]"], ["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 4024)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 21:49:36 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-15 21:49:43 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"", "phone"=>"", "linkedin"=>"", "github"=>"", "skills"=>"", "experience"=>["", "", "", "", "", "", "", ""], "education"=>["", "", "", "", "", "", "", ""], "project"=>["", "", "", "", "", ""]}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[36mResume Create (0.2ms)[0m  [1m[32mINSERT INTO "resumes" ("name", "phone", "linkedin", "github", "skills", "experience", "education", "project", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", ""], ["phone", ""], ["linkedin", ""], ["github", ""], ["skills", ""], ["experience", "[\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"]"], ["education", "[\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"]"], ["project", "[\"\", \"\", \"\", \"\", \"\", \"\"]"], ["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 4018)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 21:54:56 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 189ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 887)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-15 21:55:07 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"q", "phone"=>"q", "linkedin"=>"q", "github"=>"q", "skills"=>"q", "experience"=>["", "", "", "", "", "", "", ""], "education"=>["", "", "", "", "", "", "", ""], "project"=>["", "", "", "", "", ""]}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[36mResume Create (0.3ms)[0m  [1m[32mINSERT INTO "resumes" ("name", "phone", "linkedin", "github", "skills", "experience", "education", "project", "user_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "q"], ["phone", "q"], ["linkedin", "q"], ["github", "q"], ["skills", "q"], ["experience", "[\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"]"], ["education", "[\"\", \"\", \"\", \"\", \"\", \"\", \"\", \"\"]"], ["project", "[\"\", \"\", \"\", \"\", \"\", \"\"]"], ["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 4018)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 22:25:46 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"toby@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"toby@gmail.com"}}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "toby@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 189ms (Views: 0.2ms | ActiveRecord: 1.4ms | Allocations: 955)
+
+
+Started POST "/api/auth/logout" for ::1 at 2020-09-15 22:25:57 +1000
+Processing by Api::AuthController#logout as */*
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 129)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 22:26:07 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"test@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"test@gmail.com"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 184ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 887)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-15 22:26:50 +1000
+Processing by Api::ResumesController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (1.6ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 2.5ms | ActiveRecord: 1.8ms | Allocations: 3639)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 22:39:28 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 182ms (Views: 0.2ms | ActiveRecord: 1.1ms | Allocations: 955)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 22:40:27 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 886)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 22:58:46 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 187ms (Views: 0.2ms | ActiveRecord: 1.3ms | Allocations: 956)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 23:10:44 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 180ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 956)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-15 23:10:44 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (1.3ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 13ms (Views: 9.1ms | ActiveRecord: 1.6ms | Allocations: 3549)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-15 23:10:44 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.3ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 2.6ms | ActiveRecord: 0.6ms | Allocations: 3522)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 23:11:20 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 887)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-15 23:11:21 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.3ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 4.0ms | ActiveRecord: 0.6ms | Allocations: 3523)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-15 23:11:21 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.3ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 2.9ms | ActiveRecord: 0.5ms | Allocations: 3522)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 23:15:57 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 886)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 23:29:42 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 179ms (Views: 0.1ms | ActiveRecord: 1.1ms | Allocations: 956)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-15 23:29:43 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (7.7ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 16ms (Views: 6.5ms | ActiveRecord: 7.9ms | Allocations: 3546)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-15 23:29:43 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.3ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 0.5ms | Allocations: 3522)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 23:30:28 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 181ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 888)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-15 23:30:28 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.3ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 2.6ms | ActiveRecord: 0.5ms | Allocations: 3523)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-15 23:30:28 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.3ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 2.6ms | ActiveRecord: 0.6ms | Allocations: 3522)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 23:31:37 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 887)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-15 23:31:37 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 1.9ms | ActiveRecord: 0.4ms | Allocations: 3522)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-15 23:31:37 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 2.1ms | ActiveRecord: 0.5ms | Allocations: 3522)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-15 23:32:07 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-15 23:32:07 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.3ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 3.3ms | ActiveRecord: 0.5ms | Allocations: 3522)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-15 23:32:07 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 2.3ms | ActiveRecord: 0.4ms | Allocations: 3522)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 00:18:26 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.2ms | ActiveRecord: 0.9ms | Allocations: 956)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 00:28:12 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test@gmail.com", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.9ms | Allocations: 955)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to ChangeResumeTables (20200915143119)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200915143119"]]
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to ChangeResumeColumnsToArray (20200915143523)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (10.8ms)[0m  [1m[35mALTER TABLE "resumes" ALTER COLUMN "project" TYPE character varying[], ALTER COLUMN "project" SET DEFAULT '{}'[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to ChangeResumeColumnsToArray (20200915143523)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.9ms)[0m  [1m[35mALTER TABLE "resumes" DROP COLUMN "project"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "resumes" DROP COLUMN "education"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "resumes" DROP COLUMN "experience"[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200915143523"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4573739591579357430)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddColumnToResumesWithArray (20200915143843)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE "resumes" ADD "project" character varying[] DEFAULT '{}'[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "resumes" ADD "education" character varying[] DEFAULT '{}'[0m
+  [1m[35m (0.2ms)[0m  [1m[35mALTER TABLE "resumes" ADD "experience" character varying[] DEFAULT '{}'[0m
+  [1m[36mprimary::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200915143843"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4573739591579357430)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/api/auth/login" for ::1 at 2020-09-16 00:39:46 +1000
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"test@gmail.com"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"test@gmail.com"}}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 197ms (Views: 0.1ms | ActiveRecord: 5.0ms | Allocations: 6235)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 00:40:27 +1000
+Processing by Api::ResumesController#index as */*
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (1.1ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 8]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 42ms (Views: 12.5ms | ActiveRecord: 3.8ms | Allocations: 17697)
+
+
+Started DELETE "/api/users/8" for ::1 at 2020-09-16 00:41:53 +1000
+Processing by Api::UsersController#destroy as */*
+  Parameters: {"id"=>"8"}
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 151)
+
+
+Started DELETE "/api/users/8" for ::1 at 2020-09-16 00:42:18 +1000
+Processing by Api::UsersController#destroy as */*
+  Parameters: {"id"=>"8"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:24:in `destroy'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+  [1m[36mResume Load (0.3ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 8]]
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+  [1m[36mResume Destroy (1.0ms)[0m  [1m[31mDELETE FROM "resumes" WHERE "resumes"."id" = $1[0m  [["id", 3]]
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+  [1m[36mResume Destroy (0.1ms)[0m  [1m[31mDELETE FROM "resumes" WHERE "resumes"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+  [1m[36mResume Destroy (0.1ms)[0m  [1m[31mDELETE FROM "resumes" WHERE "resumes"."id" = $1[0m  [["id", 5]]
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+  [1m[36mResume Destroy (0.1ms)[0m  [1m[31mDELETE FROM "resumes" WHERE "resumes"."id" = $1[0m  [["id", 6]]
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+  [1m[36mResume Destroy (0.1ms)[0m  [1m[31mDELETE FROM "resumes" WHERE "resumes"."id" = $1[0m  [["id", 7]]
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+  [1m[36mResume Destroy (0.1ms)[0m  [1m[31mDELETE FROM "resumes" WHERE "resumes"."id" = $1[0m  [["id", 8]]
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+  [1m[36mResume Destroy (0.1ms)[0m  [1m[31mDELETE FROM "resumes" WHERE "resumes"."id" = $1[0m  [["id", 9]]
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+  [1m[36mResume Destroy (0.3ms)[0m  [1m[31mDELETE FROM "resumes" WHERE "resumes"."id" = $1[0m  [["id", 10]]
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+  [1m[36mResume Destroy (0.2ms)[0m  [1m[31mDELETE FROM "resumes" WHERE "resumes"."id" = $1[0m  [["id", 11]]
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+  [1m[36mResume Destroy (0.1ms)[0m  [1m[31mDELETE FROM "resumes" WHERE "resumes"."id" = $1[0m  [["id", 12]]
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+  [1m[36mUser Destroy (0.1ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 8]]
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:25:in `destroy'
+Completed 200 OK in 26ms (Views: 0.1ms | ActiveRecord: 3.8ms | Allocations: 14488)
+
+
+Started POST "/api/users" for ::1 at 2020-09-16 00:42:50 +1000
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"test", "email"=>"test", "password"=>"[FILTERED]"}}
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+  [1m[36mUser Create (1.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "test"], ["email", "test"], ["password_digest", "$2a$12$KQPWjOs2NvF94NoVb3saROL7LLhOfMipQ..pcC8zaRRg7wNXX6Vaa"]]
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+Completed 201 Created in 184ms (Views: 0.2ms | ActiveRecord: 1.8ms | Allocations: 4072)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 00:42:58 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 902)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 00:43:21 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"test"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"test"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 199ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-16 00:49:00 +1000
+Processing by Api::ResumesController#create as */*
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 122)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 00:50:24 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 197ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 956)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 00:52:48 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 179ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 886)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 00:53:11 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 179ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 901)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 00:53:52 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 180ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 887)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 00:54:39 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 887)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 01:45:59 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 179ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 955)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 01:50:13 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 180ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 01:51:03 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 887)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 01:51:41 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 01:51:43 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 180ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 01:52:43 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 886)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 01:55:10 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 180ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 887)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 01:55:10 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (1.0ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 2.5ms | ActiveRecord: 1.2ms | Allocations: 1757)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-16 01:55:51 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"toby2", "phone"=>"0413943212", "linkedin"=>"linked", "github"=>"git", "skills"=>"none", "experience"=>[], "education"=>"none", "project"=>"app", "references"=>"me"}}
+Filter chain halted as :user_exists rendered or redirected
+Completed 401 Unauthorized in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 209)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 01:55:53 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"password"=>"[FILTERED]", "email"=>"test"}, "auth"=>{"user"=>{"password"=>"[FILTERED]", "email"=>"test"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 191ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-16 01:56:04 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"toby2", "phone"=>"0413943212", "linkedin"=>"linked", "github"=>"git", "skills"=>"none", "experience"=>[], "education"=>"none", "project"=>"app", "references"=>"me"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+[31mUnpermitted parameters: :education, :project, :references[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[36mResume Create (0.6ms)[0m  [1m[32mINSERT INTO "resumes" ("name", "phone", "linkedin", "github", "skills", "user_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "toby2"], ["phone", "0413943212"], ["linkedin", "linked"], ["github", "git"], ["skills", "none"], ["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+Completed 200 OK in 13ms (Views: 0.4ms | ActiveRecord: 2.2ms | Allocations: 4123)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 01:56:11 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 180ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 01:56:12 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 1.4ms | ActiveRecord: 0.4ms | Allocations: 1881)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-16 01:57:13 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"Wow", "phone"=>"Look", "linkedin"=>"at", "github"=>"this", "skills"=>"great", "experience"=>["AMAZING", "org", "is", "AMZING", "WOWO", "LOOK", "AT", "thgjs"], "education"=>["LOL", "NOT", "IM", "EDUCATED", "LOOK", "ME", "AT", "AT"], "project"=>["holy", "guac", "thats", "crazy", "wack", "DAMN"]}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[36mResume Create (0.3ms)[0m  [1m[32mINSERT INTO "resumes" ("name", "phone", "linkedin", "github", "skills", "user_id", "project", "education", "experience") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Wow"], ["phone", "Look"], ["linkedin", "at"], ["github", "this"], ["skills", "great"], ["user_id", 10], ["project", "{holy,guac,thats,crazy,wack,DAMN}"], ["education", "{LOL,NOT,IM,EDUCATED,LOOK,ME,AT,AT}"], ["experience", "{AMAZING,org,is,AMZING,WOWO,LOOK,AT,thgjs}"]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 1.1ms | Allocations: 4212)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 01:57:14 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 0.4ms | Allocations: 2212)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:10:27 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 179ms (Views: 0.1ms | ActiveRecord: 1.1ms | Allocations: 955)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:10:27 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.8ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 1.8ms | ActiveRecord: 1.0ms | Allocations: 2263)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:12:18 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 887)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:12:19 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.3ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.6ms | Allocations: 2212)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:13:19 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:13:20 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 0.3ms | Allocations: 2211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:14:21 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:14:21 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 4.8ms | ActiveRecord: 0.5ms | Allocations: 2213)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:16:27 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 888)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:16:27 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 0.4ms | Allocations: 2211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:17:51 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:17:52 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.4ms | Allocations: 2211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:18:40 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 182ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 887)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:18:40 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.6ms | ActiveRecord: 0.3ms | Allocations: 2211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:20:20 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 180ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:20:20 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.1ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.3ms | Allocations: 2211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:21:12 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 179ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 887)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:21:12 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.1ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.2ms | Allocations: 2211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:21:35 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 179ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:21:35 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 4.4ms | ActiveRecord: 0.4ms | Allocations: 2213)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:23:36 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 180ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 888)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:23:36 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 1.8ms | ActiveRecord: 0.4ms | Allocations: 2211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:25:02 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 887)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:25:02 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.3ms | Allocations: 2211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:46:20 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 181ms (Views: 0.1ms | ActiveRecord: 1.3ms | Allocations: 955)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:46:20 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (1.0ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 2.1ms | ActiveRecord: 1.2ms | Allocations: 2262)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:47:27 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 180ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:47:27 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.3ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 0.5ms | Allocations: 2211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:48:41 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 179ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 887)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:48:41 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 0.5ms | Allocations: 2211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:50:31 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 180ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 887)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:50:31 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.3ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 0.5ms | Allocations: 2211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:52:18 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 180ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:52:19 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 0.5ms | Allocations: 2211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:58:37 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 181ms (Views: 0.1ms | ActiveRecord: 1.0ms | Allocations: 955)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:58:37 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.9ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 1.8ms | ActiveRecord: 1.0ms | Allocations: 2262)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 02:59:36 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 179ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 02:59:36 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.5ms | ActiveRecord: 0.4ms | Allocations: 2211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 03:00:10 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 180ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 03:00:10 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.4ms | Allocations: 2211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 03:02:54 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 180ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 03:02:54 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.4ms | Allocations: 2211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 03:03:28 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 180ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 889)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 03:03:28 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 0.4ms | Allocations: 2211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 03:53:28 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 183ms (Views: 0.5ms | ActiveRecord: 1.0ms | Allocations: 956)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 03:53:29 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.8ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 2.7ms | ActiveRecord: 1.0ms | Allocations: 2262)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 03:56:18 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 03:56:18 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 2.4ms | ActiveRecord: 0.4ms | Allocations: 2211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 03:57:55 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 889)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 03:57:56 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.3ms | ActiveRecord: 0.4ms | Allocations: 2211)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-16 03:59:17 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"name", "phone"=>"phone num", "linkedin"=>"link", "github"=>"github", "skills"=>"skill", "experience"=>["org", "pos", "dur", "desc", "org", "pos", "dur", "desc"], "education"=>["school", "qualification", "grad", "desc", "school", "qualification", "grad", "desc"], "project"=>["title", "link", "desc", "title", "link", "desc"]}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[36mResume Create (0.4ms)[0m  [1m[32mINSERT INTO "resumes" ("name", "phone", "linkedin", "github", "skills", "user_id", "project", "education", "experience") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "name"], ["phone", "phone num"], ["linkedin", "link"], ["github", "github"], ["skills", "skill"], ["user_id", 10], ["project", "{title,link,desc,title,link,desc}"], ["education", "{school,qualification,grad,desc,school,qualification,grad,desc}"], ["experience", "{org,pos,dur,desc,org,pos,dur,desc}"]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 1.5ms | Allocations: 4200)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 03:59:17 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.5ms | ActiveRecord: 0.4ms | Allocations: 2544)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 03:59:51 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 03:59:52 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.4ms | ActiveRecord: 0.4ms | Allocations: 2544)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:02:04 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.2ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 04:02:04 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.5ms | ActiveRecord: 0.4ms | Allocations: 2544)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-16 04:02:15 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"", "phone"=>"", "linkedin"=>"", "github"=>"", "skills"=>"", "experience"=>["", "", "", "", "", "", "", ""], "education"=>["", "", "", "", "", "", "", ""], "project"=>["", "", "", "", "", ""]}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[36mResume Create (0.2ms)[0m  [1m[32mINSERT INTO "resumes" ("name", "phone", "linkedin", "github", "skills", "user_id", "project", "education", "experience") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", ""], ["phone", ""], ["linkedin", ""], ["github", ""], ["skills", ""], ["user_id", 10], ["project", "{\"\",\"\",\"\",\"\",\"\",\"\"}"], ["education", "{\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"}"], ["experience", "{\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"}"]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 0.8ms | Allocations: 4194)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:03:09 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 887)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:03:21 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 887)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 04:03:21 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.1ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.5ms | ActiveRecord: 0.3ms | Allocations: 2878)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-16 04:03:35 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"", "phone"=>"", "linkedin"=>"", "github"=>"", "skills"=>"", "experience"=>["", "", "", "", "", "", "", ""], "education"=>["", "", "", "", "", "", "", ""], "project"=>["", "", "", "", "", ""]}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[36mResume Create (0.2ms)[0m  [1m[32mINSERT INTO "resumes" ("name", "phone", "linkedin", "github", "skills", "user_id", "project", "education", "experience") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", ""], ["phone", ""], ["linkedin", ""], ["github", ""], ["skills", ""], ["user_id", 10], ["project", "{\"\",\"\",\"\",\"\",\"\",\"\"}"], ["education", "{\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"}"], ["experience", "{\"\",\"\",\"\",\"\",\"\",\"\",\"\",\"\"}"]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 0.8ms | Allocations: 4194)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:06:02 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 04:06:03 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.3ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.4ms | Allocations: 3211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:06:27 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 887)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 04:06:27 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.1ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.3ms | Allocations: 3211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:07:23 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 04:07:23 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.1ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.3ms | Allocations: 3211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:07:41 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 184ms (Views: 3.5ms | ActiveRecord: 0.1ms | Allocations: 888)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 04:07:41 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.1ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.8ms | ActiveRecord: 0.3ms | Allocations: 3211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:09:19 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 887)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 04:09:19 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.6ms | ActiveRecord: 0.3ms | Allocations: 3211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:09:32 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 888)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 04:09:32 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.3ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 1.9ms | ActiveRecord: 0.5ms | Allocations: 3211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:10:21 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 177ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 04:10:21 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 1.6ms | ActiveRecord: 0.3ms | Allocations: 3211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:11:38 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 04:11:38 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.1ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.6ms | ActiveRecord: 0.3ms | Allocations: 3211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:13:09 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 890)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 04:13:10 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.4ms | Allocations: 3211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:14:51 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.1ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 04:14:51 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.3ms | Allocations: 3211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:22:57 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.9ms | Allocations: 955)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 04:22:58 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.8ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 2.0ms | ActiveRecord: 1.0ms | Allocations: 3262)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:24:01 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 887)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 04:24:01 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.6ms | ActiveRecord: 0.4ms | Allocations: 3211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:32:37 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 199ms (Views: 0.1ms | ActiveRecord: 2.1ms | Allocations: 957)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 04:32:38 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.9ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.1ms | Allocations: 3262)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:34:35 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 887)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 04:34:36 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 1.7ms | ActiveRecord: 0.7ms | Allocations: 3211)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:41:55 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.9ms | Allocations: 956)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 04:41:55 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.8ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 5ms (Views: 1.9ms | ActiveRecord: 1.0ms | Allocations: 3262)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 04:53:01 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.9ms | Allocations: 957)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 04:53:01 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.8ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 8ms (Views: 5.0ms | ActiveRecord: 1.1ms | Allocations: 3264)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 05:00:35 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 178ms (Views: 0.1ms | ActiveRecord: 0.9ms | Allocations: 955)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 05:00:36 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (1.4ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 7ms (Views: 3.3ms | ActiveRecord: 1.6ms | Allocations: 3262)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 05:04:18 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 181ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 05:04:18 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 15ms (Views: 13.5ms | ActiveRecord: 0.5ms | Allocations: 3211)
+
+
+Started POST "/api/users" for ::1 at 2020-09-16 05:06:56 +1000
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{}}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms | Allocations: 139)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user):
+  
+app/controllers/api/users_controller.rb:32:in `user_params'
+app/controllers/api/users_controller.rb:14:in `create'
+Started POST "/api/auth/login" for ::1 at 2020-09-16 05:12:42 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"test", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"test", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 179ms (Views: 0.1ms | ActiveRecord: 0.2ms | Allocations: 886)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 05:12:42 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 10], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 10]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 6ms (Views: 1.8ms | ActiveRecord: 0.5ms | Allocations: 3211)
+
+
+Started POST "/api/users" for ::1 at 2020-09-16 05:59:45 +1000
+Processing by Api::UsersController#create as */*
+  Parameters: {"user"=>{"email"=>"Toby@toby", "name"=>"Toby", "password"=>"[FILTERED]"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+  [1m[36mUser Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "Toby@toby"], ["LIMIT", 1]]
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "password_digest") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Toby"], ["email", "Toby@toby"], ["password_digest", "$2a$12$c94dgMDgK7.p8IFs7SMrk.JKdKXFyyKWzE6DZ4hYXU6AYtC.Xv.M6"]]
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/users_controller.rb:14:in `create'
+Completed 201 Created in 188ms (Views: 0.3ms | ActiveRecord: 2.7ms | Allocations: 3773)
+
+
+Started POST "/api/auth/login" for ::1 at 2020-09-16 06:00:05 +1000
+Processing by Api::AuthController#login as */*
+  Parameters: {"user"=>{"email"=>"Toby@toby", "password"=>"[FILTERED]"}, "auth"=>{"user"=>{"email"=>"Toby@toby", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "Toby@toby"], ["LIMIT", 1]]
+  ↳ app/controllers/api/auth_controller.rb:6:in `login'
+Completed 200 OK in 179ms (Views: 0.1ms | ActiveRecord: 0.3ms | Allocations: 938)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 06:00:05 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.8ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 11]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 1.4ms | ActiveRecord: 1.0ms | Allocations: 1736)
+
+
+Started POST "/api/resumes/" for ::1 at 2020-09-16 06:00:37 +1000
+Processing by Api::ResumesController#create as */*
+  Parameters: {"resume"=>{"name"=>"q", "phone"=>"q", "linkedin"=>"q", "github"=>"q", "skills"=>"q", "experience"=>["q", "q", "q", "q", "q", "q", "q", "q"], "education"=>["w", "w", "w", "w", "w", "w", "w", "w"], "project"=>["q", "q", "q", "q", "q", "q"]}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[36mResume Create (0.3ms)[0m  [1m[32mINSERT INTO "resumes" ("name", "phone", "linkedin", "github", "skills", "user_id", "project", "education", "experience") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "q"], ["phone", "q"], ["linkedin", "q"], ["github", "q"], ["skills", "q"], ["user_id", 11], ["project", "{q,q,q,q,q,q}"], ["education", "{w,w,w,w,w,w,w,w}"], ["experience", "{q,q,q,q,q,q,q,q}"]]
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/resumes_controller.rb:8:in `create'
+Completed 200 OK in 7ms (Views: 0.3ms | ActiveRecord: 1.0ms | Allocations: 4197)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 06:00:37 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 11]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.2ms | ActiveRecord: 0.4ms | Allocations: 2035)
+
+
+Started GET "/api/resumes/" for ::1 at 2020-09-16 06:00:48 +1000
+Processing by Api::ResumesController#index as */*
+  Parameters: {"resume"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 11], ["LIMIT", 1]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+  [1m[36mResume Load (0.2ms)[0m  [1m[34mSELECT "resumes".* FROM "resumes" WHERE "resumes"."user_id" = $1[0m  [["user_id", 11]]
+  ↳ app/controllers/api/resumes_controller.rb:4:in `index'
+Completed 200 OK in 4ms (Views: 1.3ms | ActiveRecord: 0.6ms | Allocations: 2035)
+
+
